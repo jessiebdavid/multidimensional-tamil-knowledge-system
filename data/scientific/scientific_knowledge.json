@@ -114,6 +114,34 @@
               ]
             },
             {
+              "id": "displacement",
+              "name": "Displacement",
+              "definition": "The change in position of an object from its initial position to its final position, including direction.",
+              "keywords": [
+                "displacement",
+                "position change",
+                "initial position",
+                "final position",
+                "distance"
+              ],
+              "related_concepts": [
+                "motion",
+                "velocity",
+                "distance",
+                "position"
+              ],
+              "dimensions": {
+                "supported": ["1D", "2D", "3D", "4D"],
+                "notes": "Displacement is a vector quantity describing the change in position between two points. Its spatial components and temporal context can be analyzed through the dimensional processing system."
+              },
+              "context_terms": [
+                "change in position",
+                "initial to final position",
+                "net displacement",
+                "position vector difference"
+              ]
+            },
+            {
               "id": "velocity",
               "name": "Velocity",
               "definition": "The rate of change of an object's displacement with respect to time, including its direction.",
