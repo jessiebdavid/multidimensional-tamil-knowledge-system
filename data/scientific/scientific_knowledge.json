@@ -79,6 +79,39 @@
                 "reference frame",
                 "time evolution"
               ]
+            },
+            {
+              "id": "force",
+              "name": "Force",
+              "definition": "An interaction that can change an object’s motion by producing acceleration or deformation.",
+              "keywords": [
+                "force",
+                "interaction",
+                "acceleration",
+                "mass",
+                "Newton laws"
+              ],
+              "related_concepts": [
+                "motion",
+                "acceleration",
+                "mass",
+                "momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Force can be represented as a vector with spatial components and can be analyzed as part of a time-dependent dynamical system. The dimensional processing system will determine the appropriate computational representation."
+              },
+              "context_terms": [
+                "net force",
+                "interaction",
+                "dynamics",
+                "equation of motion"
+              ]
             }
           ]
         }
