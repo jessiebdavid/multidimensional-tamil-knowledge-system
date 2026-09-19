@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multidimensional-tamil-knowledge-system"
+version = "0.1.0"
+description = "A multidimensional Tamil knowledge system connecting classical Tamil concepts with scientific knowledge."
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+include = [
+    "scientific*",
+    "shared*",
+    "processing*",
+    "integration*"
+]
