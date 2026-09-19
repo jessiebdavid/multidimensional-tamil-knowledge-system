@@ -41,6 +41,46 @@
               ]
             }
           ]
+        },
+        {
+          "id": "classical_mechanics",
+          "name": "Classical Mechanics",
+          "concepts": [
+            {
+              "id": "motion",
+              "name": "Motion",
+              "definition": "Change in position of an object with respect to a reference frame over time.",
+              "keywords": [
+                "motion",
+                "position",
+                "displacement",
+                "velocity",
+                "acceleration",
+                "trajectory"
+              ],
+              "related_concepts": [
+                "velocity",
+                "acceleration",
+                "displacement",
+                "reference_frame"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Motion can be represented along one or more spatial coordinates and can be analyzed as a time-dependent physical process. The dimensional processing system will determine the appropriate computational representation."
+              },
+              "context_terms": [
+                "trajectory",
+                "change in position",
+                "reference frame",
+                "time evolution"
+              ]
+            }
+          ]
         }
       ]
     }
