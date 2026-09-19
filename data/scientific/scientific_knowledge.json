@@ -26,10 +26,13 @@
                 "general_relativity",
                 "worldline"
               ],
-              "dimensions": [
-                "3D",
-                "4D"
-              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Spacetime combines three spatial dimensions with time and is therefore represented using a four-dimensional physical framework. The dimensional processing system will determine how this concept is computationally analyzed at each stage."
+              },
               "context_terms": [
                 "space-time structure",
                 "four-dimensional continuum",
