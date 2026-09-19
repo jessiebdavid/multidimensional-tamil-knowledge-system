@@ -1,0 +1,45 @@
+{
+  "version": "0.1.0",
+  "domains": [
+    {
+      "id": "physics",
+      "name": "Physics",
+      "description": "Scientific study of matter, energy, space, time, motion, fields, and their interactions.",
+      "subdomains": [
+        {
+          "id": "relativity",
+          "name": "Relativity",
+          "concepts": [
+            {
+              "id": "spacetime",
+              "name": "Spacetime",
+              "definition": "A four-dimensional physical framework combining three spatial dimensions with time.",
+              "keywords": [
+                "space",
+                "time",
+                "four-dimensional",
+                "spacetime",
+                "relativity"
+              ],
+              "related_concepts": [
+                "special_relativity",
+                "general_relativity",
+                "worldline"
+              ],
+              "dimensions": [
+                "3D",
+                "4D"
+              ],
+              "context_terms": [
+                "space-time structure",
+                "four-dimensional continuum",
+                "events",
+                "worldline"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
