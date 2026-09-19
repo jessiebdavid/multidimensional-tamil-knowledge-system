@@ -145,6 +145,41 @@
                 "conservation of energy",
                 "work-energy relation"
               ]
+            },
+            {
+              "id": "momentum",
+              "name": "Momentum",
+              "definition": "A vector physical quantity representing the product of an object's mass and velocity.",
+              "keywords": [
+                "momentum",
+                "linear momentum",
+                "mass",
+                "velocity",
+                "impulse",
+                "conservation"
+              ],
+              "related_concepts": [
+                "motion",
+                "force",
+                "velocity",
+                "mass",
+                "impulse"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Momentum is a vector quantity whose spatial components depend on the direction of motion and whose evolution can be analyzed over time. The dimensional processing system will determine the appropriate computational representation."
+              },
+              "context_terms": [
+                "linear momentum",
+                "change in momentum",
+                "conservation of momentum",
+                "impulse-momentum relation"
+              ]
             }
           ]
         }
