@@ -1,18 +1,26 @@
-from typing import Any, Dict, List
+from typing import Any, Dict
+
+from processing.dimensions.four_d.processor import FourDProcessor
+from processing.dimensions.one_d.processor import OneDProcessor
+from processing.dimensions.three_d.processor import ThreeDProcessor
+from processing.dimensions.two_d.processor import TwoDProcessor
 
 
 class DimensionRouter:
     """
-    Prepares dimensional routing metadata for downstream processing.
+    Routes scientific concepts to the appropriate dimensional processor.
 
-    This component does not perform 1D/2D/3D/4D analysis.
-    Actual dimensional processing belongs to Phase 8.
-
-    Dimensions are only routed when they are explicitly supplied
-    by the scientific knowledge/query pipeline.
+    The router uses dimensional metadata from the scientific knowledge base.
+    It does not invent dimensional claims.
     """
 
-    SUPPORTED_DIMENSIONS = ("1D", "2D", "3D", "4D")
+    def __init__(self):
+        self.processors = {
+            "1D": OneDProcessor(),
+            "2D": TwoDProcessor(),
+            "3D": ThreeDProcessor(),
+            "4D": FourDProcessor(),
+        }
 
     def route(
         self,
@@ -24,54 +32,45 @@ class DimensionRouter:
             [],
         )
 
-        dimensions = self._extract_dimensions(
-            expanded_concepts
-        )
+        routed_dimensions = []
+        dimensional_analysis = []
 
-        if dimensions:
+        for concept in expanded_concepts:
+            dimensions = concept.get(
+                "dimensions",
+                {},
+            )
+
+            supported = dimensions.get(
+                "supported",
+                [],
+            )
+
+            for dimension in supported:
+                processor = self.processors.get(dimension)
+
+                if processor is None:
+                    continue
+
+                routed_dimensions.append(dimension)
+
+                dimensional_analysis.append(
+                    processor.process(concept)
+                )
+
+        routed_dimensions = list(dict.fromkeys(routed_dimensions))
+
+        if not expanded_concepts:
             return {
-                "status": "resolved",
-                "dimensions": dimensions,
-                "processing_stage": "phase_8",
-                "reason": (
-                    "Dimensional metadata was supplied by "
-                    "the scientific knowledge pipeline."
-                ),
+                "status": "unresolved",
+                "dimensions": [],
+                "dimensional_analysis": [],
+                "dimension_count": 0,
             }
 
         return {
-            "status": "unresolved",
-            "dimensions": [],
-            "processing_stage": "phase_8",
-            "reason": (
-                "No explicit dimensional metadata was "
-                "available for this query."
-            ),
+            "status": "resolved",
+            "dimensions": routed_dimensions,
+            "dimensional_analysis": dimensional_analysis,
+            "dimension_count": len(routed_dimensions),
         }
-
-    def _extract_dimensions(
-        self,
-        expanded_concepts: List[Dict[str, Any]],
-    ) -> List[str]:
-        dimensions = []
-
-        for concept in expanded_concepts:
-            dimension_data = concept.get("dimensions", {})
-
-            if not isinstance(dimension_data, dict):
-                continue
-
-            supported = dimension_data.get("supported", [])
-
-            if not isinstance(supported, list):
-                continue
-
-            for dimension in supported:
-                if (
-                    isinstance(dimension, str)
-                    and dimension in self.SUPPORTED_DIMENSIONS
-                    and dimension not in dimensions
-                ):
-                    dimensions.append(dimension)
-
-        return dimensions
