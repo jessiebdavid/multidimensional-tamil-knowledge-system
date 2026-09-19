@@ -39,6 +39,197 @@
                 "events",
                 "worldline"
               ]
+            },
+            {
+              "id": "special_relativity",
+              "name": "Special Relativity",
+              "definition": "A theory describing space and time for inertial observers when gravitational effects are neglected.",
+              "keywords": [
+                "special relativity",
+                "inertial frame",
+                "light speed",
+                "spacetime"
+              ],
+              "related_concepts": [
+                "spacetime",
+                "time_dilation"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Special Relativity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "special relativity",
+                "inertial frame",
+                "light speed",
+                "spacetime"
+              ]
+            },
+            {
+              "id": "general_relativity",
+              "name": "General Relativity",
+              "definition": "A theory describing gravity through the geometry of spacetime.",
+              "keywords": [
+                "general relativity",
+                "gravity",
+                "curvature",
+                "spacetime"
+              ],
+              "related_concepts": [
+                "spacetime",
+                "gravity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "General Relativity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "general relativity",
+                "gravity",
+                "curvature",
+                "spacetime"
+              ]
+            },
+            {
+              "id": "time_dilation",
+              "name": "Time Dilation",
+              "definition": "A relativistic effect in which elapsed time depends on relative motion or gravitational environment.",
+              "keywords": [
+                "time dilation",
+                "clock",
+                "relativity",
+                "time"
+              ],
+              "related_concepts": [
+                "special_relativity",
+                "general_relativity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "4D"
+                ],
+                "notes": "Time Dilation is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "time dilation",
+                "clock",
+                "relativity",
+                "time"
+              ]
+            },
+            {
+              "id": "length_contraction",
+              "name": "Length Contraction",
+              "definition": "The relativistic change in measured length along the direction of relative motion.",
+              "keywords": [
+                "length contraction",
+                "relativity",
+                "velocity",
+                "frame"
+              ],
+              "related_concepts": [
+                "special_relativity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Length Contraction is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "length contraction",
+                "relativity",
+                "velocity",
+                "frame"
+              ]
+            },
+            {
+              "id": "relativity_of_simultaneity",
+              "name": "Relativity of Simultaneity",
+              "definition": "The principle that simultaneity of separated events can depend on the observer frame.",
+              "keywords": [
+                "simultaneity",
+                "events",
+                "observer",
+                "relativity"
+              ],
+              "related_concepts": [
+                "special_relativity",
+                "spacetime"
+              ],
+              "dimensions": {
+                "supported": [
+                  "4D"
+                ],
+                "notes": "Relativity of Simultaneity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "simultaneity",
+                "events",
+                "observer",
+                "relativity"
+              ]
+            },
+            {
+              "id": "worldline",
+              "name": "Worldline",
+              "definition": "A curve in spacetime representing the history of an object or event.",
+              "keywords": [
+                "worldline",
+                "spacetime",
+                "trajectory",
+                "event"
+              ],
+              "related_concepts": [
+                "spacetime",
+                "special_relativity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "4D"
+                ],
+                "notes": "Worldline is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "worldline",
+                "spacetime",
+                "trajectory",
+                "event"
+              ]
+            },
+            {
+              "id": "lorentz_transformation",
+              "name": "Lorentz Transformation",
+              "definition": "A transformation relating space and time coordinates between inertial reference frames.",
+              "keywords": [
+                "Lorentz transformation",
+                "coordinates",
+                "relativity",
+                "frame"
+              ],
+              "related_concepts": [
+                "special_relativity",
+                "spacetime"
+              ],
+              "dimensions": {
+                "supported": [
+                  "4D"
+                ],
+                "notes": "Lorentz Transformation is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "Lorentz transformation",
+                "coordinates",
+                "relativity",
+                "frame"
+              ]
             }
           ]
         },
@@ -131,7 +322,12 @@
                 "position"
               ],
               "dimensions": {
-                "supported": ["1D", "2D", "3D", "4D"],
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
                 "notes": "Displacement is a vector quantity describing the change in position between two points. Its spatial components and temporal context can be analyzed through the dimensional processing system."
               },
               "context_terms": [
@@ -159,7 +355,12 @@
                 "momentum"
               ],
               "dimensions": {
-                "supported": ["1D", "2D", "3D", "4D"],
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
                 "notes": "Velocity is a vector quantity describing the rate and direction of change of position. Its spatial components and temporal evolution can be analyzed through the dimensional processing system."
               },
               "context_terms": [
@@ -187,7 +388,12 @@
                 "energy"
               ],
               "dimensions": {
-                "supported": ["1D", "2D", "3D", "4D"],
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
                 "notes": "Mass is a scalar physical quantity associated with the inertia of an object. Its role in dynamical systems can be analyzed across spatial and temporal contexts by the dimensional processing system."
               },
               "context_terms": [
@@ -362,6 +568,2034 @@
                 "energy transfer rate",
                 "mechanical power",
                 "work per unit time"
+              ]
+            },
+            {
+              "id": "position",
+              "name": "Position",
+              "definition": "The location of an object relative to a chosen reference frame.",
+              "keywords": [
+                "position",
+                "location",
+                "coordinate",
+                "reference frame"
+              ],
+              "related_concepts": [
+                "motion",
+                "displacement"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Position is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "position",
+                "location",
+                "coordinate",
+                "reference frame"
+              ]
+            },
+            {
+              "id": "distance",
+              "name": "Distance",
+              "definition": "The total length of the path traveled by an object.",
+              "keywords": [
+                "distance",
+                "path length",
+                "travel",
+                "scalar"
+              ],
+              "related_concepts": [
+                "motion",
+                "displacement",
+                "speed"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Distance is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "distance",
+                "path length",
+                "travel",
+                "scalar"
+              ]
+            },
+            {
+              "id": "speed",
+              "name": "Speed",
+              "definition": "The rate at which an object covers distance.",
+              "keywords": [
+                "speed",
+                "distance",
+                "time",
+                "rate"
+              ],
+              "related_concepts": [
+                "motion",
+                "velocity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Speed is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "speed",
+                "distance",
+                "time",
+                "rate"
+              ]
+            },
+            {
+              "id": "inertia",
+              "name": "Inertia",
+              "definition": "The tendency of an object to resist changes in its state of motion.",
+              "keywords": [
+                "inertia",
+                "resistance",
+                "motion",
+                "mass"
+              ],
+              "related_concepts": [
+                "mass",
+                "force"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Inertia is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "inertia",
+                "resistance",
+                "motion",
+                "mass"
+              ]
+            },
+            {
+              "id": "impulse",
+              "name": "Impulse",
+              "definition": "The change in momentum produced by a force acting over a time interval.",
+              "keywords": [
+                "impulse",
+                "force",
+                "time",
+                "momentum"
+              ],
+              "related_concepts": [
+                "force",
+                "momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Impulse is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "impulse",
+                "force",
+                "time",
+                "momentum"
+              ]
+            },
+            {
+              "id": "torque",
+              "name": "Torque",
+              "definition": "The rotational effect of a force about an axis or reference point.",
+              "keywords": [
+                "torque",
+                "moment",
+                "force",
+                "rotation"
+              ],
+              "related_concepts": [
+                "force",
+                "angular_momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Torque is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "torque",
+                "moment",
+                "force",
+                "rotation"
+              ]
+            },
+            {
+              "id": "angular_momentum",
+              "name": "Angular Momentum",
+              "definition": "A measure of rotational motion about a reference point or axis.",
+              "keywords": [
+                "angular momentum",
+                "rotation",
+                "moment",
+                "angular velocity"
+              ],
+              "related_concepts": [
+                "torque",
+                "momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Angular Momentum is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "angular momentum",
+                "rotation",
+                "moment",
+                "angular velocity"
+              ]
+            },
+            {
+              "id": "equilibrium",
+              "name": "Mechanical Equilibrium",
+              "definition": "A state in which the net force and relevant net torque are zero.",
+              "keywords": [
+                "equilibrium",
+                "balance",
+                "net force",
+                "torque"
+              ],
+              "related_concepts": [
+                "force",
+                "torque"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Mechanical Equilibrium is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "equilibrium",
+                "balance",
+                "net force",
+                "torque"
+              ]
+            },
+            {
+              "id": "centripetal_force",
+              "name": "Centripetal Force",
+              "definition": "The inward net force required for circular motion.",
+              "keywords": [
+                "centripetal force",
+                "circular motion",
+                "radius",
+                "velocity"
+              ],
+              "related_concepts": [
+                "force",
+                "motion"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Centripetal Force is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "centripetal force",
+                "circular motion",
+                "radius",
+                "velocity"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gravitation",
+          "name": "Gravitation",
+          "concepts": [
+            {
+              "id": "gravity",
+              "name": "Gravity",
+              "definition": "The interaction associated with mass-energy that produces gravitational motion.",
+              "keywords": [
+                "gravity",
+                "gravitation",
+                "mass",
+                "attraction"
+              ],
+              "related_concepts": [
+                "gravitational_field",
+                "general_relativity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Gravity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "gravity",
+                "gravitation",
+                "mass",
+                "attraction"
+              ]
+            },
+            {
+              "id": "gravitational_field",
+              "name": "Gravitational Field",
+              "definition": "A field describing gravitational influence at each location.",
+              "keywords": [
+                "gravitational field",
+                "gravity",
+                "acceleration",
+                "field"
+              ],
+              "related_concepts": [
+                "gravity",
+                "general_relativity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Gravitational Field is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "gravitational field",
+                "gravity",
+                "acceleration",
+                "field"
+              ]
+            },
+            {
+              "id": "gravitational_potential",
+              "name": "Gravitational Potential",
+              "definition": "Gravitational potential energy per unit mass at a location.",
+              "keywords": [
+                "gravitational potential",
+                "energy",
+                "mass",
+                "field"
+              ],
+              "related_concepts": [
+                "gravity",
+                "gravitational_field"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Gravitational Potential is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "gravitational potential",
+                "energy",
+                "mass",
+                "field"
+              ]
+            },
+            {
+              "id": "orbital_motion",
+              "name": "Orbital Motion",
+              "definition": "Motion of an object around another body under gravitational influence.",
+              "keywords": [
+                "orbit",
+                "orbital motion",
+                "gravity",
+                "trajectory"
+              ],
+              "related_concepts": [
+                "gravity",
+                "angular_momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Orbital Motion is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "orbit",
+                "orbital motion",
+                "gravity",
+                "trajectory"
+              ]
+            },
+            {
+              "id": "escape_velocity",
+              "name": "Escape Velocity",
+              "definition": "The minimum speed required to escape a gravitational field without further propulsion.",
+              "keywords": [
+                "escape velocity",
+                "gravity",
+                "energy",
+                "speed"
+              ],
+              "related_concepts": [
+                "gravity",
+                "energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Escape Velocity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "escape velocity",
+                "gravity",
+                "energy",
+                "speed"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "waves_oscillations",
+          "name": "Waves and Oscillations",
+          "concepts": [
+            {
+              "id": "wave",
+              "name": "Wave",
+              "definition": "A propagating disturbance that transfers energy and information.",
+              "keywords": [
+                "wave",
+                "propagation",
+                "disturbance",
+                "energy"
+              ],
+              "related_concepts": [
+                "wavelength",
+                "frequency"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Wave is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "wave",
+                "propagation",
+                "disturbance",
+                "energy"
+              ]
+            },
+            {
+              "id": "wavelength",
+              "name": "Wavelength",
+              "definition": "The spatial period of a wave.",
+              "keywords": [
+                "wavelength",
+                "wave",
+                "period",
+                "distance"
+              ],
+              "related_concepts": [
+                "frequency",
+                "wave"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Wavelength is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "wavelength",
+                "wave",
+                "period",
+                "distance"
+              ]
+            },
+            {
+              "id": "frequency",
+              "name": "Frequency",
+              "definition": "The number of cycles or oscillations per unit time.",
+              "keywords": [
+                "frequency",
+                "cycles",
+                "time",
+                "oscillation"
+              ],
+              "related_concepts": [
+                "wavelength",
+                "period"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Frequency is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "frequency",
+                "cycles",
+                "time",
+                "oscillation"
+              ]
+            },
+            {
+              "id": "amplitude",
+              "name": "Amplitude",
+              "definition": "The maximum magnitude of an oscillating quantity from equilibrium.",
+              "keywords": [
+                "amplitude",
+                "oscillation",
+                "displacement",
+                "wave"
+              ],
+              "related_concepts": [
+                "wave",
+                "resonance"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Amplitude is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "amplitude",
+                "oscillation",
+                "displacement",
+                "wave"
+              ]
+            },
+            {
+              "id": "phase",
+              "name": "Phase",
+              "definition": "A quantity describing the position of an oscillation within its cycle.",
+              "keywords": [
+                "phase",
+                "cycle",
+                "oscillation",
+                "wave"
+              ],
+              "related_concepts": [
+                "frequency",
+                "interference"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Phase is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "phase",
+                "cycle",
+                "oscillation",
+                "wave"
+              ]
+            },
+            {
+              "id": "interference",
+              "name": "Interference",
+              "definition": "The superposition of waves producing a combined pattern dependent on relative phase.",
+              "keywords": [
+                "interference",
+                "superposition",
+                "wave",
+                "phase"
+              ],
+              "related_concepts": [
+                "phase",
+                "diffraction"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Interference is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "interference",
+                "superposition",
+                "wave",
+                "phase"
+              ]
+            },
+            {
+              "id": "diffraction",
+              "name": "Diffraction",
+              "definition": "The spreading and interference of waves around obstacles or apertures.",
+              "keywords": [
+                "diffraction",
+                "wave",
+                "aperture",
+                "obstacle"
+              ],
+              "related_concepts": [
+                "interference",
+                "wavelength"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Diffraction is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "diffraction",
+                "wave",
+                "aperture",
+                "obstacle"
+              ]
+            },
+            {
+              "id": "resonance",
+              "name": "Resonance",
+              "definition": "A strong response when a system is driven near a natural frequency.",
+              "keywords": [
+                "resonance",
+                "natural frequency",
+                "oscillation",
+                "amplitude"
+              ],
+              "related_concepts": [
+                "frequency",
+                "harmonic_motion"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Resonance is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "resonance",
+                "natural frequency",
+                "oscillation",
+                "amplitude"
+              ]
+            },
+            {
+              "id": "simple_harmonic_motion",
+              "name": "Simple Harmonic Motion",
+              "definition": "Periodic motion with a restoring acceleration proportional to displacement toward equilibrium.",
+              "keywords": [
+                "SHM",
+                "oscillation",
+                "restoring force",
+                "period"
+              ],
+              "related_concepts": [
+                "resonance",
+                "frequency"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Simple Harmonic Motion is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "SHM",
+                "oscillation",
+                "restoring force",
+                "period"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "electromagnetism",
+          "name": "Electromagnetism",
+          "concepts": [
+            {
+              "id": "electric_charge",
+              "name": "Electric Charge",
+              "definition": "A fundamental property responsible for electromagnetic interactions.",
+              "keywords": [
+                "electric charge",
+                "positive",
+                "negative",
+                "coulomb"
+              ],
+              "related_concepts": [
+                "electric_field",
+                "electric_current"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electric Charge is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "electric charge",
+                "positive",
+                "negative",
+                "coulomb"
+              ]
+            },
+            {
+              "id": "electric_field",
+              "name": "Electric Field",
+              "definition": "A vector field describing electric force per unit positive test charge.",
+              "keywords": [
+                "electric field",
+                "charge",
+                "force",
+                "field"
+              ],
+              "related_concepts": [
+                "electric_charge",
+                "electric_potential"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electric Field is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "electric field",
+                "charge",
+                "force",
+                "field"
+              ]
+            },
+            {
+              "id": "electric_potential",
+              "name": "Electric Potential",
+              "definition": "Electric potential energy per unit charge.",
+              "keywords": [
+                "electric potential",
+                "voltage",
+                "energy",
+                "charge"
+              ],
+              "related_concepts": [
+                "electric_field",
+                "electric_current"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electric Potential is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "electric potential",
+                "voltage",
+                "energy",
+                "charge"
+              ]
+            },
+            {
+              "id": "electric_current",
+              "name": "Electric Current",
+              "definition": "The rate at which electric charge flows through a cross-section.",
+              "keywords": [
+                "current",
+                "charge",
+                "time",
+                "circuit"
+              ],
+              "related_concepts": [
+                "electric_charge",
+                "resistance"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electric Current is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "current",
+                "charge",
+                "time",
+                "circuit"
+              ]
+            },
+            {
+              "id": "resistance",
+              "name": "Electrical Resistance",
+              "definition": "A measure of opposition to electric current.",
+              "keywords": [
+                "resistance",
+                "current",
+                "voltage",
+                "conductor"
+              ],
+              "related_concepts": [
+                "electric_current"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electrical Resistance is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "resistance",
+                "current",
+                "voltage",
+                "conductor"
+              ]
+            },
+            {
+              "id": "capacitance",
+              "name": "Capacitance",
+              "definition": "The ability of a system to store electric charge per unit potential difference.",
+              "keywords": [
+                "capacitance",
+                "charge",
+                "voltage",
+                "capacitor"
+              ],
+              "related_concepts": [
+                "electric_potential"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Capacitance is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "capacitance",
+                "charge",
+                "voltage",
+                "capacitor"
+              ]
+            },
+            {
+              "id": "magnetic_field",
+              "name": "Magnetic Field",
+              "definition": "A vector field associated with moving charges, currents, and magnetic materials.",
+              "keywords": [
+                "magnetic field",
+                "magnetism",
+                "current",
+                "charge"
+              ],
+              "related_concepts": [
+                "electric_current",
+                "magnetic_flux"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Magnetic Field is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "magnetic field",
+                "magnetism",
+                "current",
+                "charge"
+              ]
+            },
+            {
+              "id": "magnetic_flux",
+              "name": "Magnetic Flux",
+              "definition": "A measure of magnetic field passing through a specified surface.",
+              "keywords": [
+                "magnetic flux",
+                "magnetic field",
+                "area",
+                "surface"
+              ],
+              "related_concepts": [
+                "magnetic_field",
+                "electromagnetic_induction"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Magnetic Flux is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "magnetic flux",
+                "magnetic field",
+                "area",
+                "surface"
+              ]
+            },
+            {
+              "id": "electromagnetic_induction",
+              "name": "Electromagnetic Induction",
+              "definition": "Production of electromotive force by changing magnetic flux.",
+              "keywords": [
+                "induction",
+                "magnetic flux",
+                "voltage",
+                "Faraday"
+              ],
+              "related_concepts": [
+                "magnetic_field",
+                "electric_current"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electromagnetic Induction is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "induction",
+                "magnetic flux",
+                "voltage",
+                "Faraday"
+              ]
+            },
+            {
+              "id": "electromagnetic_wave",
+              "name": "Electromagnetic Wave",
+              "definition": "A propagating coupled electric and magnetic field disturbance.",
+              "keywords": [
+                "electromagnetic wave",
+                "electric field",
+                "magnetic field",
+                "light"
+              ],
+              "related_concepts": [
+                "electric_field",
+                "magnetic_field",
+                "photon"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electromagnetic Wave is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "electromagnetic wave",
+                "electric field",
+                "magnetic field",
+                "light"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "thermodynamics",
+          "name": "Thermodynamics",
+          "concepts": [
+            {
+              "id": "temperature",
+              "name": "Temperature",
+              "definition": "A physical quantity characterizing the thermal state of a system.",
+              "keywords": [
+                "temperature",
+                "thermal",
+                "kelvin",
+                "state"
+              ],
+              "related_concepts": [
+                "heat",
+                "entropy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Temperature is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "temperature",
+                "thermal",
+                "kelvin",
+                "state"
+              ]
+            },
+            {
+              "id": "heat",
+              "name": "Heat",
+              "definition": "Energy transferred because of a temperature difference.",
+              "keywords": [
+                "heat",
+                "thermal energy",
+                "temperature",
+                "transfer"
+              ],
+              "related_concepts": [
+                "temperature",
+                "internal_energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Heat is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "heat",
+                "thermal energy",
+                "temperature",
+                "transfer"
+              ]
+            },
+            {
+              "id": "internal_energy",
+              "name": "Internal Energy",
+              "definition": "The total microscopic energy associated with particles and interactions within a system.",
+              "keywords": [
+                "internal energy",
+                "thermal",
+                "microscopic",
+                "energy"
+              ],
+              "related_concepts": [
+                "temperature",
+                "entropy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Internal Energy is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "internal energy",
+                "thermal",
+                "microscopic",
+                "energy"
+              ]
+            },
+            {
+              "id": "entropy",
+              "name": "Entropy",
+              "definition": "A thermodynamic state quantity associated with energy dispersal and accessible microscopic configurations.",
+              "keywords": [
+                "entropy",
+                "thermodynamics",
+                "microstates",
+                "disorder"
+              ],
+              "related_concepts": [
+                "temperature",
+                "internal_energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Entropy is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "entropy",
+                "thermodynamics",
+                "microstates",
+                "disorder"
+              ]
+            },
+            {
+              "id": "enthalpy",
+              "name": "Enthalpy",
+              "definition": "A thermodynamic state function useful for heat transfer at constant pressure.",
+              "keywords": [
+                "enthalpy",
+                "pressure",
+                "heat",
+                "thermodynamics"
+              ],
+              "related_concepts": [
+                "internal_energy",
+                "heat"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Enthalpy is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "enthalpy",
+                "pressure",
+                "heat",
+                "thermodynamics"
+              ]
+            },
+            {
+              "id": "ideal_gas",
+              "name": "Ideal Gas",
+              "definition": "An idealized gas model with negligible particle volume and intermolecular interactions.",
+              "keywords": [
+                "ideal gas",
+                "pressure",
+                "volume",
+                "temperature"
+              ],
+              "related_concepts": [
+                "temperature",
+                "pressure"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Ideal Gas is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "ideal gas",
+                "pressure",
+                "volume",
+                "temperature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "optics",
+          "name": "Optics",
+          "concepts": [
+            {
+              "id": "reflection",
+              "name": "Reflection",
+              "definition": "The return of a wave from a surface or interface.",
+              "keywords": [
+                "reflection",
+                "light",
+                "mirror",
+                "wave"
+              ],
+              "related_concepts": [
+                "refraction"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Reflection is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "reflection",
+                "light",
+                "mirror",
+                "wave"
+              ]
+            },
+            {
+              "id": "refraction",
+              "name": "Refraction",
+              "definition": "The change in propagation direction when a wave enters a medium with different wave speed.",
+              "keywords": [
+                "refraction",
+                "light",
+                "medium",
+                "index"
+              ],
+              "related_concepts": [
+                "reflection",
+                "refractive_index"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Refraction is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "refraction",
+                "light",
+                "medium",
+                "index"
+              ]
+            },
+            {
+              "id": "refractive_index",
+              "name": "Refractive Index",
+              "definition": "A dimensionless quantity relating light speed in vacuum to phase speed in a material.",
+              "keywords": [
+                "refractive index",
+                "light",
+                "medium",
+                "speed"
+              ],
+              "related_concepts": [
+                "refraction"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Refractive Index is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "refractive index",
+                "light",
+                "medium",
+                "speed"
+              ]
+            },
+            {
+              "id": "polarization",
+              "name": "Polarization",
+              "definition": "A description of the orientation of oscillations in a transverse electromagnetic wave.",
+              "keywords": [
+                "polarization",
+                "light",
+                "electromagnetic",
+                "wave"
+              ],
+              "related_concepts": [
+                "electromagnetic_wave"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Polarization is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "polarization",
+                "light",
+                "electromagnetic",
+                "wave"
+              ]
+            },
+            {
+              "id": "lens",
+              "name": "Lens",
+              "definition": "An optical element that refracts light to converge or diverge rays.",
+              "keywords": [
+                "lens",
+                "optics",
+                "refraction",
+                "focus"
+              ],
+              "related_concepts": [
+                "refraction",
+                "focal_length"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Lens is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "lens",
+                "optics",
+                "refraction",
+                "focus"
+              ]
+            },
+            {
+              "id": "focal_length",
+              "name": "Focal Length",
+              "definition": "A characteristic distance relating an optical system to its focus.",
+              "keywords": [
+                "focal length",
+                "lens",
+                "focus",
+                "optics"
+              ],
+              "related_concepts": [
+                "lens"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Focal Length is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "focal length",
+                "lens",
+                "focus",
+                "optics"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quantum_physics",
+          "name": "Quantum Physics",
+          "concepts": [
+            {
+              "id": "quantum_state",
+              "name": "Quantum State",
+              "definition": "A mathematical description containing the information needed to characterize a quantum system.",
+              "keywords": [
+                "quantum state",
+                "state",
+                "quantum",
+                "wavefunction"
+              ],
+              "related_concepts": [
+                "wavefunction",
+                "superposition"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum State is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "quantum state",
+                "state",
+                "quantum",
+                "wavefunction"
+              ]
+            },
+            {
+              "id": "wavefunction",
+              "name": "Wavefunction",
+              "definition": "A mathematical function used to represent the quantum state of a system.",
+              "keywords": [
+                "wavefunction",
+                "quantum",
+                "probability",
+                "state"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "measurement"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Wavefunction is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "wavefunction",
+                "quantum",
+                "probability",
+                "state"
+              ]
+            },
+            {
+              "id": "superposition",
+              "name": "Quantum Superposition",
+              "definition": "A quantum state represented as a linear combination of allowed states.",
+              "keywords": [
+                "superposition",
+                "quantum",
+                "states",
+                "linear combination"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "measurement"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Superposition is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "superposition",
+                "quantum",
+                "states",
+                "linear combination"
+              ]
+            },
+            {
+              "id": "quantum_measurement",
+              "name": "Quantum Measurement",
+              "definition": "A process producing an outcome associated with a quantum observable.",
+              "keywords": [
+                "quantum measurement",
+                "observable",
+                "outcome",
+                "state"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "superposition"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Measurement is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "quantum measurement",
+                "observable",
+                "outcome",
+                "state"
+              ]
+            },
+            {
+              "id": "uncertainty_principle",
+              "name": "Uncertainty Principle",
+              "definition": "A quantum principle limiting simultaneous precision of certain pairs of physical quantities.",
+              "keywords": [
+                "uncertainty",
+                "position",
+                "momentum",
+                "quantum"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Uncertainty Principle is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "uncertainty",
+                "position",
+                "momentum",
+                "quantum"
+              ]
+            },
+            {
+              "id": "quantum_entanglement",
+              "name": "Quantum Entanglement",
+              "definition": "A quantum correlation in which a joint state cannot be represented as independent subsystem states.",
+              "keywords": [
+                "entanglement",
+                "quantum",
+                "correlation",
+                "state"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "superposition"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Entanglement is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "entanglement",
+                "quantum",
+                "correlation",
+                "state"
+              ]
+            },
+            {
+              "id": "quantum_tunneling",
+              "name": "Quantum Tunneling",
+              "definition": "A quantum process allowing nonzero probability through a classically forbidden potential region.",
+              "keywords": [
+                "tunneling",
+                "quantum",
+                "barrier",
+                "probability"
+              ],
+              "related_concepts": [
+                "wavefunction",
+                "quantum_state"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Tunneling is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "tunneling",
+                "quantum",
+                "barrier",
+                "probability"
+              ]
+            },
+            {
+              "id": "photon",
+              "name": "Photon",
+              "definition": "A quantum of electromagnetic radiation.",
+              "keywords": [
+                "photon",
+                "light",
+                "quantum",
+                "electromagnetic"
+              ],
+              "related_concepts": [
+                "electromagnetic_wave",
+                "energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Photon is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "photon",
+                "light",
+                "quantum",
+                "electromagnetic"
+              ]
+            },
+            {
+              "id": "quantum_superposition",
+              "name": "Quantum Superposition State",
+              "definition": "A state formed from a coherent combination of basis states.",
+              "keywords": [
+                "quantum",
+                "superposition",
+                "basis",
+                "coherence"
+              ],
+              "related_concepts": [
+                "superposition",
+                "quantum_state"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Superposition State is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "quantum",
+                "superposition",
+                "basis",
+                "coherence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "modern_physics",
+          "name": "Modern Physics",
+          "concepts": [
+            {
+              "id": "atom",
+              "name": "Atom",
+              "definition": "The basic unit of ordinary matter consisting of a nucleus and electrons.",
+              "keywords": [
+                "atom",
+                "nucleus",
+                "electron",
+                "matter"
+              ],
+              "related_concepts": [
+                "nucleus",
+                "electron"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Atom is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "atom",
+                "nucleus",
+                "electron",
+                "matter"
+              ]
+            },
+            {
+              "id": "electron",
+              "name": "Electron",
+              "definition": "A negatively charged elementary particle participating in electromagnetic interactions.",
+              "keywords": [
+                "electron",
+                "charge",
+                "particle",
+                "atom"
+              ],
+              "related_concepts": [
+                "atom",
+                "electric_charge"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Electron is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "electron",
+                "charge",
+                "particle",
+                "atom"
+              ]
+            },
+            {
+              "id": "proton",
+              "name": "Proton",
+              "definition": "A positively charged composite particle found in atomic nuclei.",
+              "keywords": [
+                "proton",
+                "nucleus",
+                "charge",
+                "particle"
+              ],
+              "related_concepts": [
+                "atom",
+                "neutron"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Proton is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "proton",
+                "nucleus",
+                "charge",
+                "particle"
+              ]
+            },
+            {
+              "id": "neutron",
+              "name": "Neutron",
+              "definition": "A neutral composite particle found in atomic nuclei.",
+              "keywords": [
+                "neutron",
+                "nucleus",
+                "neutral",
+                "particle"
+              ],
+              "related_concepts": [
+                "atom",
+                "proton"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Neutron is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "neutron",
+                "nucleus",
+                "neutral",
+                "particle"
+              ]
+            },
+            {
+              "id": "nucleus",
+              "name": "Atomic Nucleus",
+              "definition": "The dense central region of an atom containing protons and neutrons.",
+              "keywords": [
+                "nucleus",
+                "proton",
+                "neutron",
+                "atom"
+              ],
+              "related_concepts": [
+                "atom",
+                "radioactivity"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Atomic Nucleus is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "nucleus",
+                "proton",
+                "neutron",
+                "atom"
+              ]
+            },
+            {
+              "id": "radioactivity",
+              "name": "Radioactivity",
+              "definition": "Spontaneous transformation of unstable nuclei accompanied by radiation emission.",
+              "keywords": [
+                "radioactivity",
+                "decay",
+                "nucleus",
+                "radiation"
+              ],
+              "related_concepts": [
+                "nucleus",
+                "nuclear_fission"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Radioactivity is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "radioactivity",
+                "decay",
+                "nucleus",
+                "radiation"
+              ]
+            },
+            {
+              "id": "nuclear_fission",
+              "name": "Nuclear Fission",
+              "definition": "A nuclear process in which a heavy nucleus splits into lighter nuclei and releases energy.",
+              "keywords": [
+                "fission",
+                "nucleus",
+                "nuclear energy",
+                "chain reaction"
+              ],
+              "related_concepts": [
+                "radioactivity",
+                "nuclear_fusion"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Nuclear Fission is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "fission",
+                "nucleus",
+                "nuclear energy",
+                "chain reaction"
+              ]
+            },
+            {
+              "id": "nuclear_fusion",
+              "name": "Nuclear Fusion",
+              "definition": "A nuclear process in which light nuclei combine to form a heavier nucleus and release energy.",
+              "keywords": [
+                "fusion",
+                "nucleus",
+                "nuclear energy",
+                "plasma"
+              ],
+              "related_concepts": [
+                "nuclear_fission",
+                "energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Nuclear Fusion is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "fusion",
+                "nucleus",
+                "nuclear energy",
+                "plasma"
+              ]
+            },
+            {
+              "id": "mass_energy_equivalence",
+              "name": "Mass-Energy Equivalence",
+              "definition": "The relativistic relationship between mass and energy.",
+              "keywords": [
+                "mass",
+                "energy",
+                "relativity",
+                "equivalence"
+              ],
+              "related_concepts": [
+                "special_relativity",
+                "energy"
+              ],
+              "dimensions": {
+                "supported": [
+                  "4D"
+                ],
+                "notes": "Mass-Energy Equivalence is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "mass",
+                "energy",
+                "relativity",
+                "equivalence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "information_computational_physics",
+          "name": "Information and Computational Physics",
+          "concepts": [
+            {
+              "id": "physical_information",
+              "name": "Physical Information",
+              "definition": "A representation of distinguishable physical states that can be stored, transmitted, or processed.",
+              "keywords": [
+                "information",
+                "state",
+                "encoding",
+                "signal"
+              ],
+              "related_concepts": [
+                "information_entropy",
+                "quantum_information"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Physical Information is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "information",
+                "state",
+                "encoding",
+                "signal"
+              ]
+            },
+            {
+              "id": "information_entropy",
+              "name": "Information Entropy",
+              "definition": "A quantitative measure of uncertainty or average information content in a probability distribution.",
+              "keywords": [
+                "information entropy",
+                "uncertainty",
+                "probability",
+                "Shannon"
+              ],
+              "related_concepts": [
+                "entropy",
+                "physical_information"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Information Entropy is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "information entropy",
+                "uncertainty",
+                "probability",
+                "Shannon"
+              ]
+            },
+            {
+              "id": "quantum_information",
+              "name": "Quantum Information",
+              "definition": "Information represented and processed using quantum states and quantum mechanical principles.",
+              "keywords": [
+                "quantum information",
+                "qubit",
+                "state",
+                "computation"
+              ],
+              "related_concepts": [
+                "quantum_state",
+                "quantum_entanglement"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Quantum Information is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "quantum information",
+                "qubit",
+                "state",
+                "computation"
+              ]
+            },
+            {
+              "id": "physical_field",
+              "name": "Physical Field",
+              "definition": "A physical quantity represented at each point in space and potentially time.",
+              "keywords": [
+                "field",
+                "space",
+                "time",
+                "distribution"
+              ],
+              "related_concepts": [
+                "electric_field",
+                "magnetic_field",
+                "gravitational_field"
+              ],
+              "dimensions": {
+                "supported": [
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Physical Field is represented with spatial and temporal context; dimensional processing is deferred to Phase 8."
+              },
+              "context_terms": [
+                "field",
+                "space",
+                "time",
+                "distribution"
               ]
             }
           ]
