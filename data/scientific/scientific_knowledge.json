@@ -170,6 +170,34 @@
               ]
             },
             {
+              "id": "mass",
+              "name": "Mass",
+              "definition": "A measure of the amount of matter in an object and a measure of its resistance to acceleration.",
+              "keywords": [
+                "mass",
+                "matter",
+                "inertia",
+                "kilogram",
+                "inertial mass"
+              ],
+              "related_concepts": [
+                "force",
+                "acceleration",
+                "momentum",
+                "energy"
+              ],
+              "dimensions": {
+                "supported": ["1D", "2D", "3D", "4D"],
+                "notes": "Mass is a scalar physical quantity associated with the inertia of an object. Its role in dynamical systems can be analyzed across spatial and temporal contexts by the dimensional processing system."
+              },
+              "context_terms": [
+                "inertia",
+                "inertial mass",
+                "amount of matter",
+                "resistance to acceleration"
+              ]
+            },
+            {
               "id": "force",
               "name": "Force",
               "definition": "An interaction that can change an object’s motion by producing acceleration or deformation.",
