@@ -1,22 +1,28 @@
-from dataclasses import dataclass, field
-from typing import List
+from abc import ABC, abstractmethod
+
+from shared.schemas.tamil_retrieval import (
+    TamilRetrievalRequest,
+    TamilRetrievalResult,
+)
 
 
-@dataclass
-class TamilRetrievalRequest:
+class TamilRetrievalInterface(ABC):
     """
-    Shared contract for requesting Tamil-literature retrieval.
+    Shared interface between the scientific branch and the Tamil RAG.
 
-    This schema is the boundary between the scientific branch
-    and the Tamil RAG branch.
+    The scientific branch sends a TamilRetrievalRequest.
+    The Tamil RAG implementation returns a TamilRetrievalResult.
 
-    It describes what the Tamil retrieval system should search for.
-    It does not contain retrieved literary evidence.
+    Retrieval output does not determine whether a scientific-literary
+    relationship is valid. That belongs to later analysis stages.
     """
 
-    scientific_concepts: List[str] = field(default_factory=list)
-    scientific_domains: List[str] = field(default_factory=list)
-    context_terms: List[str] = field(default_factory=list)
-    query_terms: List[str] = field(default_factory=list)
-
-    retrieval_reason: str = ""
+    @abstractmethod
+    def retrieve(
+        self,
+        request: TamilRetrievalRequest,
+    ) -> list[TamilRetrievalResult]:
+        """
+        Retrieve potentially relevant Tamil-literature candidates.
+        """
+        raise NotImplementedError

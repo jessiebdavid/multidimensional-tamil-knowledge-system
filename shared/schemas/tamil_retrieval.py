@@ -20,3 +20,21 @@ class TamilRetrievalRequest:
     query_terms: List[str] = field(default_factory=list)
 
     retrieval_reason: str = ""
+
+
+@dataclass
+class TamilRetrievalResult:
+    """
+    Shared contract for Tamil-literature retrieval results.
+
+    This represents retrieval output only. It must not contain
+    relationship confidence or a claim that a literary item
+    corresponds to a scientific concept.
+    """
+
+    source_id: str
+    source_type: str
+    text: str
+    matched_terms: List[str] = field(default_factory=list)
+    retrieval_score: float = 0.0
+    metadata: dict = field(default_factory=dict)
