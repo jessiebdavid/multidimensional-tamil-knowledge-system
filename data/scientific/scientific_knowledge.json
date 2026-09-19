@@ -180,6 +180,39 @@
                 "conservation of momentum",
                 "impulse-momentum relation"
               ]
+            },
+            {
+              "id": "work",
+              "name": "Work",
+              "definition": "The transfer of energy that occurs when a force causes displacement of an object.",
+              "keywords": [
+                "work",
+                "force",
+                "displacement",
+                "energy",
+                "mechanical work"
+              ],
+              "related_concepts": [
+                "force",
+                "energy",
+                "motion",
+                "displacement"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Work depends on the relationship between force and displacement and represents energy transferred through mechanical interaction. Its spatial and temporal context can be analyzed through the dimensional processing system."
+              },
+              "context_terms": [
+                "work-energy theorem",
+                "force-displacement relation",
+                "energy transfer",
+                "mechanical work"
+              ]
             }
           ]
         }
