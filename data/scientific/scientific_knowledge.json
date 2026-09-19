@@ -213,6 +213,39 @@
                 "energy transfer",
                 "mechanical work"
               ]
+            },
+            {
+              "id": "power",
+              "name": "Power",
+              "definition": "The rate at which work is done or energy is transferred.",
+              "keywords": [
+                "power",
+                "work",
+                "energy",
+                "time",
+                "rate of energy transfer"
+              ],
+              "related_concepts": [
+                "work",
+                "energy",
+                "force",
+                "motion"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Power describes the rate of work or energy transfer over time. Its spatial and temporal context can be analyzed through the dimensional processing system."
+              },
+              "context_terms": [
+                "rate of doing work",
+                "energy transfer rate",
+                "mechanical power",
+                "work per unit time"
+              ]
             }
           ]
         }
