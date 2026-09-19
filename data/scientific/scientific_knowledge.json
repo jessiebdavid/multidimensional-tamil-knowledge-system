@@ -112,6 +112,39 @@
                 "dynamics",
                 "equation of motion"
               ]
+            },
+            {
+              "id": "energy",
+              "name": "Energy",
+              "definition": "A physical quantity that represents the capacity of a system to do work or produce change.",
+              "keywords": [
+                "energy",
+                "kinetic energy",
+                "potential energy",
+                "work",
+                "conservation"
+              ],
+              "related_concepts": [
+                "motion",
+                "force",
+                "work",
+                "momentum"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Energy is a scalar physical quantity associated with the state and dynamics of a system. Its spatial and temporal context can be analyzed through the dimensional processing system."
+              },
+              "context_terms": [
+                "kinetic energy",
+                "potential energy",
+                "conservation of energy",
+                "work-energy relation"
+              ]
             }
           ]
         }
