@@ -1,6 +1,7 @@
 import json
 import re
 from pathlib import Path
+from scientific.query.expander import ScientificConceptExpander
 
 from shared.schemas.scientific_query import ScientificQuery
 
@@ -16,6 +17,9 @@ class ScientificQueryProcessor:
     def __init__(self, knowledge_base_path: str | Path):
         self.knowledge_base_path = Path(knowledge_base_path)
         self.knowledge_base = self._load_knowledge_base()
+        self.expander = ScientificConceptExpander(
+            self.knowledge_base_path
+        )
 
     def _load_knowledge_base(self) -> dict:
         with self.knowledge_base_path.open(
@@ -34,7 +38,7 @@ class ScientificQueryProcessor:
         query = re.sub(r"\bwaves\b", "wave",query)
         query = re.sub(r"\bparticles\b", "particle",query)
         query = re.sub(r"\boscillations\b", "oscillations",query)
-        
+
         return query
 
     def _contains_phrase(self, query: str, phrase: str) -> bool:
@@ -132,6 +136,8 @@ class ScientificQueryProcessor:
                             if term not in context_terms:
                                 context_terms.append(term)
 
+        expanded_concepts = self.expander.expand(concepts)
+
         return ScientificQuery(
             original_query=query,
             normalized_query=normalized_query,
@@ -139,4 +145,5 @@ class ScientificQueryProcessor:
             keywords=keywords,
             domains=domains,
             context_terms=context_terms,
+            expanded_concepts=expanded_concepts,
         )

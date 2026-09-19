@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List
+from typing import Any, Dict, List
 
 
 @dataclass
@@ -17,3 +17,4 @@ class ScientificQuery:
     keywords: List[str] = field(default_factory=list)
     domains: List[str] = field(default_factory=list)
     context_terms: List[str] = field(default_factory=list)
+    expanded_concepts: List[Dict[str, Any]] = field(default_factory=list)
