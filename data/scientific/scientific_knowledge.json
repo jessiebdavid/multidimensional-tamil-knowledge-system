@@ -81,6 +81,39 @@
               ]
             },
             {
+              "id": "acceleration",
+              "name": "Acceleration",
+              "definition": "The rate of change of an object's velocity with respect to time.",
+              "keywords": [
+                "acceleration",
+                "velocity",
+                "change in velocity",
+                "time",
+                "rate of change"
+              ],
+              "related_concepts": [
+                "motion",
+                "velocity",
+                "force",
+                "mass"
+              ],
+              "dimensions": {
+                "supported": [
+                  "1D",
+                  "2D",
+                  "3D",
+                  "4D"
+                ],
+                "notes": "Acceleration is a vector quantity describing how velocity changes over time. Its spatial direction and temporal evolution can be analyzed through the dimensional processing system."
+              },
+              "context_terms": [
+                "change in velocity",
+                "rate of change of velocity",
+                "uniform acceleration",
+                "non-uniform acceleration"
+              ]
+            },
+            {
               "id": "force",
               "name": "Force",
               "definition": "An interaction that can change an object’s motion by producing acceleration or deformation.",
