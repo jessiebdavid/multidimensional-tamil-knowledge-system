@@ -58,7 +58,7 @@ def build_thiruvarutpa_documents():
                 "text": record["normalized_text"],
                 "metadata": {
                     "work": record["work"],
-                    "section": record.get("section", ""),
+                    "tirmurai": record.get("tirmurai", ""),
                     "verse_number": record["verse_number"],
                 },
             }
