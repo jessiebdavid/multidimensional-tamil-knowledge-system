@@ -1,3 +1,5 @@
+from typing import Any, Dict, List
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -13,6 +15,7 @@ from integration.analysis_assembler import AnalysisAssembler
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
 
+
 app = FastAPI(
     title="Multidimensional Tamil Knowledge System",
     version="0.1.0",
@@ -23,6 +26,17 @@ class AnalyzeRequest(BaseModel):
     query: str
 
 
+class AnalyzeResponse(BaseModel):
+    scientific_concepts: List[str]
+    scientific_domains: List[str]
+    dimensional_analysis: List[Dict[str, Any]]
+    tamil_evidence: List[Dict[str, Any]]
+    relationship_type: str
+    relationship_confidence: float
+    reasoning: str
+    uncertainty: bool
+
+
 @app.get("/health")
 def health():
     return {
@@ -31,12 +45,11 @@ def health():
     }
 
 
-@app.post("/analyze")
+@app.post("/analyze", response_model=AnalyzeResponse)
 def analyze(request: AnalyzeRequest):
 
     # 1. Scientific query processing
     processor = ScientificQueryProcessor(KNOWLEDGE_BASE)
-
     query = processor.process(request.query)
 
     # 2. Wormhole routing
@@ -77,4 +90,6 @@ def analyze(request: AnalyzeRequest):
         relationship_result=relationship,
     )
 
-    return result.__dict__
+    return AnalyzeResponse(
+        **result.__dict__
+    )
