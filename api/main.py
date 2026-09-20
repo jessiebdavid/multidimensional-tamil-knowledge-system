@@ -1,8 +1,8 @@
 from typing import Any, Dict, List
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
 from scientific.query.processor import ScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
@@ -15,10 +15,19 @@ from integration.analysis_assembler import AnalysisAssembler
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
 
-
 app = FastAPI(
     title="Multidimensional Tamil Knowledge System",
     version="0.1.0",
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
