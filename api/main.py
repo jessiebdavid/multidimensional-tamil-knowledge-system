@@ -1,0 +1,80 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+from scientific.query.processor import ScientificQueryProcessor
+from scientific.wormhole.router import WormholeRouter
+from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
+
+from tamil_rag.interface.tamil_rag import TamilRAG
+
+from processing.relationship.analyzer import RelationshipAnalyzer
+from integration.analysis_assembler import AnalysisAssembler
+
+
+KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
+
+app = FastAPI(
+    title="Multidimensional Tamil Knowledge System",
+    version="0.1.0",
+)
+
+
+class AnalyzeRequest(BaseModel):
+    query: str
+
+
+@app.get("/health")
+def health():
+    return {
+        "status": "ok",
+        "service": "multidimensional-tamil-knowledge-system",
+    }
+
+
+@app.post("/analyze")
+def analyze(request: AnalyzeRequest):
+
+    # 1. Scientific query processing
+    processor = ScientificQueryProcessor(KNOWLEDGE_BASE)
+
+    query = processor.process(request.query)
+
+    # 2. Wormhole routing
+    wormhole = WormholeRouter().route(query)
+
+    # 3. Scientific → Tamil retrieval request
+    bridge = ScientificToTamilBridge()
+
+    retrieval_request = bridge.build_request(
+        query.__dict__,
+        wormhole,
+    )
+
+    # 4. Real Tamil RAG
+    tamil_results = TamilRAG(
+        retrieval_top_k=10,
+        final_top_k=5,
+    ).retrieve(
+        retrieval_request
+    )
+
+    tamil_dicts = [
+        result.__dict__
+        for result in tamil_results
+    ]
+
+    # 5. Relationship analysis
+    relationship = RelationshipAnalyzer().analyze(
+        scientific_concepts=retrieval_request.scientific_concepts,
+        retrieved_results=tamil_dicts,
+    )
+
+    # 6. Final structured analysis
+    result = AnalysisAssembler().assemble(
+        scientific_query=query.__dict__,
+        wormhole_result=wormhole,
+        tamil_results=tamil_dicts,
+        relationship_result=relationship,
+    )
+
+    return result.__dict__
