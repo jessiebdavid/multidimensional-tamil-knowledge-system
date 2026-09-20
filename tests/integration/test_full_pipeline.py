@@ -1,7 +1,8 @@
 from scientific.query.processor import ScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
-from tamil_rag.mock_retrieval import MockTamilRetrieval
+
+from tamil_rag.interface.tamil_rag import TamilRAG
 
 from processing.relationship.analyzer import RelationshipAnalyzer
 from integration.analysis_assembler import AnalysisAssembler
@@ -37,12 +38,15 @@ def test_full_scientific_pipeline():
 
     assert retrieval_request.scientific_concepts
 
-    # 4. Mock Tamil RAG
-    tamil_results = MockTamilRetrieval().retrieve(
+    # 4. Real Tamil RAG
+    tamil_results = TamilRAG(
+        retrieval_top_k=10,
+        final_top_k=5,
+    ).retrieve(
         retrieval_request
     )
 
-    assert len(tamil_results) == 2
+    assert len(tamil_results) > 0
 
     # Convert dataclasses to dictionaries
     tamil_dicts = [
@@ -75,9 +79,3 @@ def test_full_scientific_pipeline():
     assert result.relationship_type == "INTERPRETATION"
 
     assert 0.0 <= result.relationship_confidence <= 1.0
-
-    # Synthetic evidence must remain explicitly synthetic
-    assert all(
-        evidence["source_type"] == "synthetic_test"
-        for evidence in result.tamil_evidence
-    )
