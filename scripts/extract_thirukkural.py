@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import json
 import re
 from html import unescape
@@ -16,7 +17,13 @@ SOURCE_FILE = (
     / "projectmadurai_thirukkural.html"
 )
 
-OUTPUT_DIR = BASE_DIR / "data" / "processed" / "thirukkural"
+OUTPUT_DIR = (
+    BASE_DIR
+    / "data"
+    / "processed"
+    / "thirukkural"
+)
+
 OUTPUT_FILE = OUTPUT_DIR / "thirukkural_raw.json"
 
 
@@ -39,8 +46,10 @@ def extract_kurals(html: str):
     text = soup.get_text("\n")
 
     lines = []
+
     for line in text.splitlines():
         line = clean_text(line)
+
         if line:
             lines.append(line)
 
@@ -49,7 +58,8 @@ def extract_kurals(html: str):
 
     for index, line in enumerate(lines):
 
-        # A Kural number normally appears at the end of its second line.
+        # A Kural number normally appears at the end
+        # of its second line.
         match = re.search(r"(\d{1,5})$", line)
 
         kural_number = None
@@ -57,7 +67,8 @@ def extract_kurals(html: str):
         if match:
             kural_number = int(match.group(1))
 
-        # Previous logical line should contain the first line of the Kural.
+        # We need a previous line for the first line
+        # of the Kural.
         if index < 1:
             continue
 
@@ -87,7 +98,7 @@ def extract_kurals(html: str):
         elif line1.startswith("கெட்டார்க்கு நட்டார்இல்"):
             kural_number = 1293
 
-        # No usable Kural number
+        # No usable Kural number.
         if kural_number is None:
             continue
 
@@ -95,10 +106,11 @@ def extract_kurals(html: str):
         if not 1 <= kural_number <= 1330:
             continue
 
+        # Remove the source number from the second line.
         if match:
-              line2 = line[:match.start()].strip()
+            line2 = line[:match.start()].strip()
         else:
-              line2 = line
+            line2 = line
 
         if not line1 or not line2:
             continue
@@ -107,9 +119,13 @@ def extract_kurals(html: str):
         if kural_number in seen_numbers:
             continue
 
+        # Derive chapter number from Kural number.
+        chapter_number = (kural_number - 1) // 10 + 1
+
         record = {
             "work": "Thirukkural",
             "kural_number": kural_number,
+            "chapter_number": chapter_number,
             "tamil_text": f"{line1}\n{line2}",
             "source": "Project Madurai",
         }
