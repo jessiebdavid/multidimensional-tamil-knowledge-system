@@ -85,14 +85,18 @@ class QueryIntentClassifier:
         research_requested = any(
             term in normalized
             for term in (
+                "research",
                 "research paper",
                 "research papers",
+                "research study",
+                "research studies",
                 "paper",
                 "papers",
                 "study",
                 "studies",
                 "journal",
                 "publication",
+                "scientific literature"
             )
         )
 
