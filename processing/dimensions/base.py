@@ -4,23 +4,26 @@ from typing import Any, Dict
 
 class DimensionProcessor(ABC):
     """
-    Base interface for dimensional processing.
+    Base interface for the four levels of knowledge analysis.
 
-    Each dimensional processor receives a structured scientific concept
-    and returns a standardized dimensional representation.
+    The dimensions represent levels of interpretation, not
+    mathematical or physical dimensions.
 
-    This layer performs computational representation only.
-    It does not determine literary relationships or scientific truth.
+    1D — Text / Literal
+    2D — Interpretation / Context
+    3D — Symbol / Concept
+    4D — Future / Hypothetical
     """
 
     dimension: str
+    analysis_type: str
 
     @abstractmethod
     def process(
         self,
-        concept: Dict[str, Any],
+        analysis_context: Dict[str, Any],
     ) -> Dict[str, Any]:
         """
-        Process a scientific concept under the processor's dimension.
+        Process structured evidence at this level of analysis.
         """
         raise NotImplementedError

@@ -3,7 +3,6 @@ from shared.schemas.scientific_query import ScientificQuery
 
 from scientific.wormhole.concept_bridge import ConceptBridge
 from scientific.wormhole.context_mapper import ContextMapper
-from scientific.wormhole.dimension_router import DimensionRouter
 from scientific.wormhole.model_router import ModelRouter
 
 
@@ -21,12 +20,10 @@ class WormholeRouter:
         concept_bridge: ConceptBridge | None = None,
         context_mapper: ContextMapper | None = None,
         model_router: ModelRouter | None = None,
-        dimension_router: DimensionRouter | None = None,
     ):
         self.concept_bridge = concept_bridge or ConceptBridge()
         self.context_mapper = context_mapper or ContextMapper()
         self.model_router = model_router or ModelRouter()
-        self.dimension_router = dimension_router or DimensionRouter()
 
     def route(self, scientific_query: ScientificQuery) -> Dict[str, Any]:
         """
@@ -50,15 +47,11 @@ class WormholeRouter:
             context_result,
         )
 
-        dimension_result = self.dimension_router.route(
-            query_data,
-            model_result,
-        )
+       
 
         return {
             "input_query": query_data,
             "concept_mapping": concept_result,
             "context_mapping": context_result,
             "model_route": model_result,
-            "dimension_route": dimension_result,
         }

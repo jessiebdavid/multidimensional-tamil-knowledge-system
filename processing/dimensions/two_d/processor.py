@@ -4,27 +4,57 @@ from processing.dimensions.base import DimensionProcessor
 
 
 class TwoDProcessor(DimensionProcessor):
-    """Two-dimensional conceptual relationship processing."""
+    """
+    2D — Interpretation / Context.
+
+    Organizes semantic meaning and contextual information without
+    asserting a scientific-literary correspondence.
+    """
 
     dimension = "2D"
+    analysis_type = "INTERPRETATION_CONTEXT"
 
-    def process(self, concept: Dict[str, Any]) -> Dict[str, Any]:
-        name = concept.get("name", "")
-        keywords = concept.get("keywords", [])
+    def process(
+        self,
+        analysis_context: Dict[str, Any],
+    ) -> Dict[str, Any]:
 
-        axis_a = name
-        axis_b = keywords[0] if keywords else "context"
+        tamil_evidence = analysis_context.get("tamil_evidence", [])
+        scientific_concepts = analysis_context.get(
+            "scientific_concepts",
+            [],
+        )
+        context_terms = analysis_context.get(
+            "context_terms",
+            [],
+        )
+
+        has_evidence = bool(tamil_evidence)
 
         return {
             "dimension": self.dimension,
-            "concept": name,
-            "representation_type": "two_axis_relationship",
-            "axes": {
-                "axis_a": axis_a,
-                "axis_b": axis_b,
-            },
+            "analysis_type": self.analysis_type,
+            "status": "resolved" if has_evidence else "pending_evidence",
+            "description": (
+                "Semantic interpretation and contextual relationships "
+                "derived from the available evidence."
+            ),
+            "scientific_concepts": scientific_concepts,
+            "context_terms": context_terms,
+            "interpretation_context": [
+                {
+                    "source_id": evidence.get("source_id", ""),
+                    "text": evidence.get("text", ""),
+                    "metadata": evidence.get("metadata", {}),
+                }
+                for evidence in tamil_evidence
+            ],
             "properties": {
-                "axis_count": 2,
-                "keyword_count": len(keywords),
+                "evidence_count": len(tamil_evidence),
+                "context_term_count": len(context_terms),
+                "scientific_concept_count": len(
+                    scientific_concepts
+                ),
+                "contains_relationship_claim": False,
             },
         }

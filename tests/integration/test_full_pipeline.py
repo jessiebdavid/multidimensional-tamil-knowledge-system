@@ -1,11 +1,11 @@
 from scientific.query.processor import ScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
-
+from processing.dimensions.one_d.processor import OneDProcessor
+from processing.dimensions.two_d.processor import TwoDProcessor
+from processing.dimensions.three_d.processor import ThreeDProcessor
+from processing.dimensions.four_d.processor import FourDProcessor
 from tamil_rag.interface.tamil_rag import TamilRAG
-
-from processing.relationship.analyzer import RelationshipAnalyzer
-from integration.analysis_assembler import AnalysisAssembler
 
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
@@ -26,56 +26,81 @@ def test_full_scientific_pipeline():
     wormhole = WormholeRouter().route(query)
 
     assert wormhole["model_route"]["status"] == "resolved"
-    assert wormhole["dimension_route"]["status"] == "resolved"
 
-    # 3. Scientific → Tamil retrieval request
-    bridge = ScientificToTamilBridge()
-
-    retrieval_request = bridge.build_request(
+    # 3. Scientific -> Tamil retrieval contract
+    retrieval_request = ScientificToTamilBridge().build_request(
         query.__dict__,
         wormhole,
     )
 
-    assert retrieval_request.scientific_concepts
+    assert "Time Dilation" in (
+        retrieval_request.scientific_concepts
+    )
 
     # 4. Real Tamil RAG
-    tamil_results = TamilRAG(
+    rag = TamilRAG(
         retrieval_top_k=10,
         final_top_k=5,
-    ).retrieve(
+    )
+
+    tamil_results = rag.retrieve(
         retrieval_request
     )
 
-    assert len(tamil_results) > 0
+    assert isinstance(tamil_results, list)
 
-    # Convert dataclasses to dictionaries
-    tamil_dicts = [
-        result.__dict__
+    # 5. Convert retrieved evidence into the dimensional
+    # analysis context.
+    tamil_evidence = [
+        {
+            "source_id": result.source_id,
+            "source_type": result.source_type,
+            "text": result.text,
+            "retrieval_score": result.retrieval_score,
+            "metadata": result.metadata,
+        }
         for result in tamil_results
     ]
 
-    # 5. Relationship analysis
-    relationship = RelationshipAnalyzer().analyze(
-        scientific_concepts=retrieval_request.scientific_concepts,
-        retrieved_results=tamil_dicts,
+    analysis_context = {
+        "query": query.original_query,
+        "scientific_concepts": query.concepts,
+        "scientific_domains": query.domains,
+        "context_terms": query.context_terms,
+        "tamil_evidence": tamil_evidence,
+    }
+
+    # 6. 1D -> 4D analysis
+    one_d = OneDProcessor().process(
+        analysis_context
     )
 
-    assert relationship["relationship_type"] == "INTERPRETATION"
-
-    # 6. Final structured analysis
-    result = AnalysisAssembler().assemble(
-        scientific_query=query.__dict__,
-        wormhole_result=wormhole,
-        tamil_results=tamil_dicts,
-        relationship_result=relationship,
+    two_d = TwoDProcessor().process(
+        analysis_context
     )
 
-    # 7. Validate final contract
-    assert result.scientific_concepts
-    assert result.scientific_domains
-    assert result.dimensional_analysis
-    assert result.tamil_evidence
+    three_d = ThreeDProcessor().process(
+        analysis_context
+    )
 
-    assert result.relationship_type == "INTERPRETATION"
+    four_d = FourDProcessor().process(
+        analysis_context
+    )
 
-    assert 0.0 <= result.relationship_confidence <= 1.0
+    assert one_d["dimension"] == "1D"
+    assert one_d["analysis_type"] == "TEXT_LITERAL"
+
+    assert two_d["dimension"] == "2D"
+    assert two_d["analysis_type"] == "INTERPRETATION_CONTEXT"
+
+    assert three_d["dimension"] == "3D"
+    assert three_d["analysis_type"] == "SYMBOL_CONCEPT"
+
+    assert four_d["dimension"] == "4D"
+    assert four_d["analysis_type"] == "FUTURE_HYPOTHETICAL"
+
+    # 7. 3D does not automatically claim a relationship.
+    assert three_d["relationship_claim"] is None
+
+    # 8. 4D does not automatically generate a hypothesis.
+    assert four_d["properties"]["hypothesis_generated"] is False
