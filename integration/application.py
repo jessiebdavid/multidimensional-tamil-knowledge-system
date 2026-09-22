@@ -1,13 +1,15 @@
 from integration.analysis_pipeline import AnalysisPipeline
 from scientific.query.handler import QueryHandler
+from scientific.query.retrieval import UnifiedRetriever
+from scientific.query.tamil_retrieval_adapter import TamilRAGAdapter
+from tamil_rag.interface.tamil_rag import TamilRAG
 
 
 class ScientificApplication:
     """
-    Application-level entry point for the scientific analysis pipeline.
+    End-to-end application entry point.
 
-    Converts a raw user query into InputUnderstanding and then
-    executes the structured analysis pipeline.
+    Uses the real Tamil RAG when available.
     """
 
     def __init__(
@@ -18,12 +20,31 @@ class ScientificApplication:
         self.query_handler = (
             query_handler or QueryHandler()
         )
-        self.analysis_pipeline = (
-            analysis_pipeline or AnalysisPipeline()
-        )
+
+        if analysis_pipeline is None:
+            tamil_rag = TamilRAG(
+                retrieval_top_k=10,
+                final_top_k=5,
+            )
+
+            tamil_adapter = TamilRAGAdapter(
+                tamil_rag
+            )
+
+            retriever = UnifiedRetriever(
+                tamil_retriever=tamil_adapter
+            )
+
+            analysis_pipeline = AnalysisPipeline(
+                retriever=retriever
+            )
+
+        self.analysis_pipeline = analysis_pipeline
 
     def analyze(self, query: str):
-        understanding = self.query_handler.understand(query)
+        understanding = self.query_handler.understand(
+            query
+        )
 
         scientific_concepts = []
 

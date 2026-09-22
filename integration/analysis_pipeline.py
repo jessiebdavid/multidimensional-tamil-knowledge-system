@@ -46,43 +46,110 @@ class AnalysisPipeline:
 
         request = RetrievalRequest(
             query=query,
-            scientific_concepts=list(scientific_concepts),
-            scientific_domains=list(scientific_domains),
-            context_terms=list(context_terms),
+            scientific_concepts=list(
+                scientific_concepts
+            ),
+            scientific_domains=list(
+                scientific_domains
+            ),
+            context_terms=list(
+                context_terms
+            ),
             retrieve_scientific=True,
             retrieve_tamil=retrieve_tamil,
             retrieve_research=retrieve_research,
         )
 
-        evidence = self.retriever.retrieve(request)
+        evidence = self.retriever.retrieve(
+            request
+        )
 
-        required_sources = ["scientific_kb"]
+        required_sources = [
+            "scientific_kb"
+        ]
 
         if retrieve_tamil:
-            required_sources.append("tamil_rag")
+            required_sources.append(
+                "tamil_rag"
+            )
 
         if retrieve_research:
-            required_sources.append("research")
+            required_sources.append(
+                "research"
+            )
 
         alignment = self.aligner.align(
             evidence,
             required_sources=required_sources,
         )
 
+        # Convert Evidence dataclasses into dictionaries
+        # for the dimensional processors.
         dimension_context = {
             "query": query,
             "scientific_concepts": list(
                 scientific_concepts
             ),
-            "scientific_evidence": (
-                alignment.scientific_evidence
-            ),
-            "tamil_evidence": (
-                alignment.tamil_evidence
-            ),
-            "research_evidence": (
-                alignment.research_evidence
-            ),
+            "scientific_evidence": [
+                {
+                    "source_id": item.source_id,
+                    "source_type": item.source_type,
+                    "text": item.text,
+                    "retrieval_score": (
+                        item.retrieval_score
+                    ),
+                    "matched_terms": list(
+                        item.matched_terms
+                    ),
+                    "provenance": dict(
+                        item.provenance
+                    ),
+                    "metadata": dict(
+                        item.metadata
+                    ),
+                }
+                for item in alignment.scientific_evidence
+            ],
+            "tamil_evidence": [
+                {
+                    "source_id": item.source_id,
+                    "source_type": item.source_type,
+                    "text": item.text,
+                    "retrieval_score": (
+                        item.retrieval_score
+                    ),
+                    "matched_terms": list(
+                        item.matched_terms
+                    ),
+                    "provenance": dict(
+                        item.provenance
+                    ),
+                    "metadata": dict(
+                        item.metadata
+                    ),
+                }
+                for item in alignment.tamil_evidence
+            ],
+            "research_evidence": [
+                {
+                    "source_id": item.source_id,
+                    "source_type": item.source_type,
+                    "text": item.text,
+                    "retrieval_score": (
+                        item.retrieval_score
+                    ),
+                    "matched_terms": list(
+                        item.matched_terms
+                    ),
+                    "provenance": dict(
+                        item.provenance
+                    ),
+                    "metadata": dict(
+                        item.metadata
+                    ),
+                }
+                for item in alignment.research_evidence
+            ],
         }
 
         dimension_result = (
@@ -152,7 +219,9 @@ class AnalysisPipeline:
             relationship_confidence=relationship[
                 "relationship_confidence"
             ],
-            reasoning=relationship["reason"],
+            reasoning=relationship[
+                "reason"
+            ],
             uncertainty=bool(
                 alignment.missing_sources
                 or relationship[

@@ -32,46 +32,87 @@ class UnifiedRetriever:
         request: RetrievalRequest,
     ) -> List[Evidence]:
 
-        evidence = []
+        evidence: List[Evidence] = []
 
-        if request.retrieve_scientific:
-            scientific_terms = (
+        # -------------------------------------------------
+        # Scientific knowledge retrieval
+        # -------------------------------------------------
+        if (
+            request.retrieve_scientific
+            and self.scientific_retriever
+        ):
+            scientific_query_terms = (
                 request.scientific_concepts
                 + request.scientific_domains
                 + request.context_terms
             )
 
-            evidence.extend(
+            scientific_results = (
                 self.scientific_retriever.retrieve(
-                    scientific_terms,
+                    query_terms=scientific_query_terms,
                     top_k=request.top_k,
                 )
             )
 
-        if request.retrieve_tamil and self.tamil_retriever:
+            evidence.extend(scientific_results)
+
+        # -------------------------------------------------
+        # Tamil literature retrieval
+        # -------------------------------------------------
+        if (
+            request.retrieve_tamil
+            and self.tamil_retriever
+        ):
+            tamil_query_terms = (
+                request.scientific_concepts
+                + request.scientific_domains
+                + request.context_terms
+            )
+
             tamil_results = self.tamil_retriever.retrieve(
-                scientific_concepts=request.scientific_concepts,
-                scientific_domains=request.scientific_domains,
-                context_terms=request.context_terms,
-                query_terms=request.context_terms,
+                scientific_concepts=(
+                    request.scientific_concepts
+                ),
+                scientific_domains=(
+                    request.scientific_domains
+                ),
+                context_terms=(
+                    request.context_terms
+                ),
+                query_terms=tamil_query_terms,
                 top_k=request.top_k,
             )
 
             evidence.extend(tamil_results)
 
-        if request.retrieve_research and self.research_retriever:
-            research_results = self.research_retriever.retrieve(
-                query=request.query,
-                scientific_concepts=request.scientific_concepts,
-                context_terms=request.context_terms,
-                top_k=request.top_k,
+        # -------------------------------------------------
+        # Research retrieval
+        # -------------------------------------------------
+        if (
+            request.retrieve_research
+            and self.research_retriever
+        ):
+            research_results = (
+                self.research_retriever.retrieve(
+                    query=request.query,
+                    scientific_concepts=(
+                        request.scientific_concepts
+                    ),
+                    context_terms=(
+                        request.context_terms
+                    ),
+                    top_k=request.top_k,
+                )
             )
 
             evidence.extend(research_results)
 
-        evidence.sort(
-            key=lambda item: item.retrieval_score,
-            reverse=True,
-        )
+        # -------------------------------------------------
+        # IMPORTANT:
+        # Do not globally sort and truncate here.
+        #
+        # Evidence Alignment must receive evidence from
+        # every requested source independently.
+        # -------------------------------------------------
 
-        return evidence[:request.top_k]
+        return evidence

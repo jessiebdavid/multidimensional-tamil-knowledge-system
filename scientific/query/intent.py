@@ -96,7 +96,7 @@ class QueryIntentClassifier:
                 "studies",
                 "journal",
                 "publication",
-                "scientific literature"
+                "scientific literature",
             )
         )
 
@@ -143,6 +143,18 @@ class QueryIntentClassifier:
                 "meaning of this verse",
                 "explain this kural",
                 "explain this verse",
+            )
+        )
+
+        tamil_literature_requested = any(
+            term in normalized
+            for term in (
+                "tamil literature",
+                "tamil literary",
+                "classical tamil",
+                "ancient tamil",
+                "thirukkural",
+                "thiruvarutpa",
             )
         )
 
@@ -210,6 +222,7 @@ class QueryIntentClassifier:
                 "CROSS_DOMAIN_COMPARISON",
                 "DIMENSIONAL_ANALYSIS",
             }
+            or tamil_literature_requested
         )
 
         return QueryIntent(
