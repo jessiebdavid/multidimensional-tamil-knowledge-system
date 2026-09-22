@@ -1,24 +1,59 @@
+from dataclasses import asdict
+
 from integration.analysis_pipeline import AnalysisPipeline
+from scientific.final_llm.qwen_synthesizer import (
+    QwenFinalSynthesizer,
+)
 from scientific.query.handler import QueryHandler
 from scientific.query.retrieval import UnifiedRetriever
-from scientific.query.tamil_retrieval_adapter import TamilRAGAdapter
+from scientific.query.tamil_retrieval_adapter import (
+    TamilRAGAdapter,
+)
+from scientific.tiny_llm.qwen_model import QwenTinyLLM
 from tamil_rag.interface.tamil_rag import TamilRAG
 
 
 class ScientificApplication:
     """
-    End-to-end application entry point.
+    Complete application orchestration layer.
 
-    Uses the real Tamil RAG when available.
+    Default behavior preserves the original AnalysisResult API.
+
+    Optional final synthesis:
+
+        application.analyze(
+            query,
+            synthesize=True,
+        )
+
+    Flow:
+
+    Query
+        ↓
+    Input Understanding
+        ↓
+    Scientific + Tamil Retrieval
+        ↓
+    Evidence Alignment
+        ↓
+    1D → 4D
+        ↓
+    Relationship Analysis
+        ↓
+    AnalysisResult
+        ↓
+    Final LLM Synthesis (optional)
     """
 
     def __init__(
         self,
         query_handler=None,
         analysis_pipeline=None,
+        final_synthesizer=None,
     ):
         self.query_handler = (
-            query_handler or QueryHandler()
+            query_handler
+            or QueryHandler()
         )
 
         if analysis_pipeline is None:
@@ -39,11 +74,52 @@ class ScientificApplication:
                 retriever=retriever
             )
 
-        self.analysis_pipeline = analysis_pipeline
+        self.analysis_pipeline = (
+            analysis_pipeline
+        )
 
-    def analyze(self, query: str):
-        understanding = self.query_handler.understand(
-            query
+        self.final_synthesizer = (
+            final_synthesizer
+        )
+
+        self._qwen_model = None
+
+    def _get_final_synthesizer(self):
+        if self.final_synthesizer is None:
+            if self._qwen_model is None:
+                self._qwen_model = QwenTinyLLM()
+
+            self.final_synthesizer = (
+                QwenFinalSynthesizer(
+                    self._qwen_model
+                )
+            )
+
+        return self.final_synthesizer
+
+    def analyze(
+        self,
+        query: str,
+        synthesize=False,
+    ):
+        """
+        Analyze a query.
+
+        By default, returns AnalysisResult for backward
+        compatibility.
+
+        When synthesize=True, returns:
+
+        {
+            "analysis": AnalysisResult,
+            "final_response": {...}
+        }
+        """
+
+        understanding = (
+            self.query_handler.understand(
+                query
+            )
         )
 
         scientific_concepts = []
@@ -57,19 +133,51 @@ class ScientificApplication:
             understanding.related_concepts
         )
 
-        return self.analysis_pipeline.analyze(
-            query=query,
-            scientific_concepts=scientific_concepts,
-            scientific_domains=(
-                [understanding.scientific_domain]
-                if understanding.scientific_domain
-                else []
-            ),
-            context_terms=understanding.context_terms,
-            retrieve_tamil=(
-                understanding.requires_tamil_retrieval
-            ),
-            retrieve_research=(
-                understanding.requires_research
-            ),
+        analysis_result = (
+            self.analysis_pipeline.analyze(
+                query=query,
+                scientific_concepts=(
+                    scientific_concepts
+                ),
+                scientific_domains=(
+                    [
+                        understanding.scientific_domain
+                    ]
+                    if understanding.scientific_domain
+                    else []
+                ),
+                context_terms=(
+                    understanding.context_terms
+                ),
+                retrieve_tamil=(
+                    understanding.requires_tamil_retrieval
+                ),
+                retrieve_research=(
+                    understanding.requires_research
+                ),
+            )
         )
+
+        if not synthesize:
+            return analysis_result
+
+        structured_result = asdict(
+            analysis_result
+        )
+
+        structured_result["query"] = query
+
+        final_llm = (
+            self._get_final_synthesizer()
+        )
+
+        final_response = (
+            final_llm.synthesize(
+                structured_result
+            )
+        )
+
+        return {
+            "analysis": analysis_result,
+            "final_response": final_response,
+        }
