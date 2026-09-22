@@ -1,8 +1,7 @@
 from scientific.query.processor import ScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
-from tamil_rag.mock_retrieval import MockTamilRetrieval
-
+from tamil_rag_mock.mock_retrieval import MockTamilRetrieval
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
 

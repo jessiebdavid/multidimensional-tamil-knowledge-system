@@ -1,4 +1,4 @@
-from tamil_rag.mock_retrieval import MockTamilRetrieval
+from tamil_rag_mock.mock_retrieval import MockTamilRetrieval
 from shared.schemas.tamil_retrieval import TamilRetrievalRequest
 
 
