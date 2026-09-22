@@ -7,7 +7,7 @@ from processing.dimensions.two_d.processor import TwoDProcessor
 from processing.dimensions.three_d.processor import ThreeDProcessor
 from processing.dimensions.four_d.processor import FourDProcessor
 
-from tamil_rag.interface.tamil_rag import TamilRAG
+from tamil_rag_mock.mock_retrieval import MockTamilRetrieval
 
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
@@ -29,11 +29,15 @@ def test_full_scientific_pipeline():
         query
     )
 
-    assert wormhole["scientific_query"]
-    assert wormhole["concepts"]
+    assert wormhole["input_query"]["original_query"] == query.original_query
+    assert wormhole["concept_mapping"]["primary_concepts"]
+    assert "Time Dilation" in wormhole["concept_mapping"]["primary_concepts"]
+    assert wormhole["context_mapping"]["domains"]
+    assert wormhole["model_route"]["status"] == "resolved"
 
     # 3. Scientific -> Tamil retrieval bridge
     retrieval_request = ScientificToTamilBridge().build_request(
+        query.__dict__,
         wormhole
     )
 
@@ -41,11 +45,10 @@ def test_full_scientific_pipeline():
         retrieval_request.scientific_concepts
     )
 
-    # 4. Real Tamil RAG
-    rag = TamilRAG(
-        retrieval_top_k=10,
-        final_top_k=5,
-    )
+    # 4. Mock Tamil RAG
+    # Used on the scientific branch only to validate
+    # the retrieval integration contract.
+    rag = MockTamilRetrieval()
 
     tamil_results = rag.retrieve(
         retrieval_request
