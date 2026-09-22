@@ -1,17 +1,18 @@
+from abc import ABC, abstractmethod
 from typing import List
 
 from shared.schemas.evidence import Evidence
 
 
-class ResearchRetriever:
+class ResearchRetriever(ABC):
     """
-    Interface for research/web evidence retrieval.
+    Contract for external research/web evidence retrieval.
 
-    This stage does not perform live web retrieval yet.
-    It defines the contract that a real research backend
-    can implement later.
+    This interface does not generate or validate scientific claims.
+    Implementations must return source-backed Evidence objects.
     """
 
+    @abstractmethod
     def retrieve(
         self,
         query: str,

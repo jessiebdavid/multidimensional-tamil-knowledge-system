@@ -102,3 +102,66 @@ def test_tamil_source_is_not_used_when_disabled():
         result.source_type != "tamil_rag"
         for result in results
     )
+
+class FakeResearchRetriever:
+    def retrieve(
+        self,
+        query,
+        scientific_concepts,
+        context_terms,
+        top_k,
+    ):
+        return [
+            Evidence(
+                source_id="research_test_001",
+                source_type="research",
+                text="Synthetic research evidence.",
+                retrieval_score=0.9,
+                provenance={
+                    "synthetic": True,
+                },
+            )
+        ]
+
+
+def test_unified_retrieval_with_research_source():
+    retriever = UnifiedRetriever(
+        research_retriever=FakeResearchRetriever()
+    )
+
+    request = RetrievalRequest(
+        query="Research time dilation",
+        scientific_concepts=["Time Dilation"],
+        context_terms=["relativity"],
+        retrieve_research=True,
+    )
+
+    results = retriever.retrieve(request)
+
+    assert results
+
+    source_types = {
+        result.source_type
+        for result in results
+    }
+
+    assert "research" in source_types
+
+
+def test_research_source_is_not_used_when_disabled():
+    retriever = UnifiedRetriever(
+        research_retriever=FakeResearchRetriever()
+    )
+
+    request = RetrievalRequest(
+        query="Time dilation",
+        scientific_concepts=["Time Dilation"],
+        retrieve_research=False,
+    )
+
+    results = retriever.retrieve(request)
+
+    assert all(
+        result.source_type != "research"
+        for result in results
+    )

@@ -11,7 +11,7 @@ class UnifiedRetriever:
     """
     Coordinates retrieval across available evidence sources.
 
-    Each source is optional and controlled by the RetrievalRequest.
+    Each source is optional and controlled by RetrievalRequest.
     """
 
     def __init__(
@@ -58,6 +58,16 @@ class UnifiedRetriever:
             )
 
             evidence.extend(tamil_results)
+
+        if request.retrieve_research and self.research_retriever:
+            research_results = self.research_retriever.retrieve(
+                query=request.query,
+                scientific_concepts=request.scientific_concepts,
+                context_terms=request.context_terms,
+                top_k=request.top_k,
+            )
+
+            evidence.extend(research_results)
 
         evidence.sort(
             key=lambda item: item.retrieval_score,
