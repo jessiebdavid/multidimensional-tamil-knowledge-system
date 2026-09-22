@@ -4,15 +4,38 @@ from processing.dimensions.three_d.processor import ThreeDProcessor
 from processing.dimensions.four_d.processor import FourDProcessor
 
 
-CONCEPT = {
-    "name": "Time Dilation",
-    "definition": "A relativistic effect involving differences in elapsed time.",
-    "keywords": ["time", "relativity", "clock"],
-    "context_terms": ["spacetime", "observer"],
+TAMIL_EVIDENCE = [
+    {
+        "source_id": "test_kural_1",
+        "source_type": "synthetic_test",
+        "text": "Synthetic literary evidence for integration testing.",
+        "retrieval_score": 0.8,
+        "metadata": {
+            "purpose": "integration_test",
+        },
+    }
+]
+
+
+CONTEXT = {
+    "query": "What is time dilation?",
+    "scientific_concepts": [
+        "Time Dilation",
+    ],
+    "scientific_domains": [
+        "Physics",
+        "Relativity",
+    ],
+    "context_terms": [
+        "time",
+        "clock",
+    ],
+    "tamil_evidence": TAMIL_EVIDENCE,
 }
 
 
 def test_all_dimension_processors():
+
     processors = [
         OneDProcessor(),
         TwoDProcessor(),
@@ -21,7 +44,7 @@ def test_all_dimension_processors():
     ]
 
     results = [
-        processor.process(CONCEPT)
+        processor.process(CONTEXT)
         for processor in processors
     ]
 
@@ -32,11 +55,16 @@ def test_all_dimension_processors():
         "4D",
     ]
 
-    assert results[0]["representation_type"] == "linear_scalar"
-    assert results[1]["representation_type"] == "two_axis_relationship"
-    assert results[2]["representation_type"] == "three_axis_structure"
-    assert results[3]["representation_type"] == "spatiotemporal_structure"
+    assert results[0]["analysis_type"] == "TEXT_LITERAL"
+    assert results[1]["analysis_type"] == "INTERPRETATION_CONTEXT"
+    assert results[2]["analysis_type"] == "SYMBOL_CONCEPT"
+    assert results[3]["analysis_type"] == "FUTURE_HYPOTHETICAL"
 
-    assert results[1]["properties"]["axis_count"] == 2
-    assert results[2]["properties"]["axis_count"] == 3
-    assert results[3]["properties"]["axis_count"] == 4
+    assert results[0]["status"] == "resolved"
+    assert results[1]["status"] == "resolved"
+    assert results[2]["status"] == (
+        "eligible_for_relationship_analysis"
+    )
+    assert results[3]["status"] == "not_activated"
+
+    assert results[3]["properties"]["hypothesis_generated"] is False

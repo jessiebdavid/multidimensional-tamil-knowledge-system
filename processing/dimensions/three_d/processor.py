@@ -4,29 +4,65 @@ from processing.dimensions.base import DimensionProcessor
 
 
 class ThreeDProcessor(DimensionProcessor):
-    """Three-axis conceptual processing."""
+    """
+    3D — Symbol / Concept.
+
+    Examines whether the available evidence supports a symbolic
+    or conceptual relationship between scientific concepts and
+    literary elements.
+
+    This processor does not independently declare a relationship.
+    Relationship classification belongs to the relationship analyzer.
+    """
 
     dimension = "3D"
+    analysis_type = "SYMBOL_CONCEPT"
 
-    def process(self, concept: Dict[str, Any]) -> Dict[str, Any]:
-        name = concept.get("name", "")
-        keywords = concept.get("keywords", [])
-        context_terms = concept.get("context_terms", [])
+    def process(
+        self,
+        analysis_context: Dict[str, Any],
+    ) -> Dict[str, Any]:
 
-        axes = [
-            name,
-            keywords[0] if keywords else "property",
-            context_terms[0] if context_terms else "context",
-        ]
+        tamil_evidence = analysis_context.get("tamil_evidence", [])
+        scientific_concepts = analysis_context.get(
+            "scientific_concepts",
+            [],
+        )
+
+        evidence_available = bool(tamil_evidence)
+        concepts_available = bool(scientific_concepts)
+
+        eligible = evidence_available and concepts_available
 
         return {
             "dimension": self.dimension,
-            "concept": name,
-            "representation_type": "three_axis_structure",
-            "axes": axes,
+            "analysis_type": self.analysis_type,
+            "status": (
+                "eligible_for_relationship_analysis"
+                if eligible
+                else "insufficient_evidence"
+            ),
+            "description": (
+                "Evidence-based symbolic or conceptual analysis. "
+                "This layer does not itself establish a relationship."
+            ),
+            "scientific_concepts": scientific_concepts,
+            "literary_elements": [
+                {
+                    "source_id": evidence.get("source_id", ""),
+                    "text": evidence.get("text", ""),
+                    "metadata": evidence.get("metadata", {}),
+                }
+                for evidence in tamil_evidence
+            ],
+            "relationship_claim": None,
             "properties": {
-                "axis_count": 3,
-                "keyword_count": len(keywords),
-                "context_count": len(context_terms),
+                "scientific_concept_count": len(
+                    scientific_concepts
+                ),
+                "literary_evidence_count": len(
+                    tamil_evidence
+                ),
+                "relationship_determined": False,
             },
         }

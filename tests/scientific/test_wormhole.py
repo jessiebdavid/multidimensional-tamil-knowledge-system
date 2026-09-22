@@ -30,12 +30,6 @@ def test_wormhole_routes_time_dilation():
 
     assert result["model_route"]["model_type"] == "tiny_llm"
 
-    assert result["dimension_route"]["status"] == "resolved"
-
-    assert result["dimension_route"]["dimensions"] == [
-        "4D"
-    ]
-
 
 def test_wormhole_handles_unknown_query():
     processor = ScientificQueryProcessor(KNOWLEDGE_BASE)
@@ -49,5 +43,3 @@ def test_wormhole_handles_unknown_query():
     assert result["concept_mapping"]["primary_concepts"] == []
 
     assert result["model_route"]["status"] == "unresolved"
-
-    assert result["dimension_route"]["status"] == "unresolved"

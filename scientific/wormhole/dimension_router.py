@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from processing.dimensions.four_d.processor import FourDProcessor
 from processing.dimensions.one_d.processor import OneDProcessor
@@ -8,10 +8,17 @@ from processing.dimensions.two_d.processor import TwoDProcessor
 
 class DimensionRouter:
     """
-    Routes scientific concepts to the appropriate dimensional processor.
+    Routes evidence through the four levels of analysis.
 
-    The router uses dimensional metadata from the scientific knowledge base.
-    It does not invent dimensional claims.
+    1D — Text / Literal
+    2D — Interpretation / Context
+    3D — Symbol / Concept
+    4D — Future / Hypothetical
+
+    These are analytical levels, not physical or mathematical
+    dimensions.
+
+    The router does not use scientific KB dimensional metadata.
     """
 
     def __init__(self):
@@ -26,51 +33,69 @@ class DimensionRouter:
         self,
         scientific_query: Dict[str, Any],
         model_result: Dict[str, Any],
+        tamil_evidence: List[Dict[str, Any]] | None = None,
+        relationship_type: str = "UNSUPPORTED",
+        hypothetical_request: bool = False,
     ) -> Dict[str, Any]:
-        expanded_concepts = scientific_query.get(
-            "expanded_concepts",
+
+        tamil_evidence = tamil_evidence or []
+
+        scientific_concepts = scientific_query.get(
+            "concepts",
             [],
         )
 
-        routed_dimensions = []
+        scientific_domains = scientific_query.get(
+            "domains",
+            [],
+        )
+
+        context_terms = scientific_query.get(
+            "context_terms",
+            [],
+        )
+
+        analysis_context = {
+            "query": scientific_query.get(
+                "original_query",
+                "",
+            ),
+            "scientific_concepts": scientific_concepts,
+            "scientific_domains": scientific_domains,
+            "context_terms": context_terms,
+            "model_result": model_result,
+            "tamil_evidence": tamil_evidence,
+            "relationship_type": relationship_type,
+            "hypothetical_request": hypothetical_request,
+        }
+
         dimensional_analysis = []
 
-        for concept in expanded_concepts:
-            dimensions = concept.get(
-                "dimensions",
-                {},
-            )
+        for dimension in (
+            "1D",
+            "2D",
+            "3D",
+            "4D",
+        ):
+            processor = self.processors[dimension]
 
-            supported = dimensions.get(
-                "supported",
-                [],
-            )
-
-            for dimension in supported:
-                processor = self.processors.get(dimension)
-
-                if processor is None:
-                    continue
-
-                routed_dimensions.append(dimension)
-
-                dimensional_analysis.append(
-                    processor.process(concept)
+            dimensional_analysis.append(
+                processor.process(
+                    analysis_context
                 )
-
-        routed_dimensions = list(dict.fromkeys(routed_dimensions))
-
-        if not expanded_concepts:
-            return {
-                "status": "unresolved",
-                "dimensions": [],
-                "dimensional_analysis": [],
-                "dimension_count": 0,
-            }
+            )
 
         return {
             "status": "resolved",
-            "dimensions": routed_dimensions,
+            "dimensions": [
+                "1D",
+                "2D",
+                "3D",
+                "4D",
+            ],
             "dimensional_analysis": dimensional_analysis,
-            "dimension_count": len(routed_dimensions),
+            "dimension_count": 4,
+            "analysis_model": (
+                "interpretive_levels"
+            ),
         }
