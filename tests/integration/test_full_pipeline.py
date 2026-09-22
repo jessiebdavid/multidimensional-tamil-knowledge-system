@@ -1,11 +1,13 @@
 from scientific.query.processor import ScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
+
 from processing.dimensions.one_d.processor import OneDProcessor
 from processing.dimensions.two_d.processor import TwoDProcessor
 from processing.dimensions.three_d.processor import ThreeDProcessor
 from processing.dimensions.four_d.processor import FourDProcessor
-from tamil_rag.interface.tamil_rag import TamilRAG
+
+from tamil_rag_mock.mock_retrieval import MockTamilRetrieval
 
 
 KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
@@ -14,43 +16,64 @@ KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
 def test_full_scientific_pipeline():
 
     # 1. Scientific query processing
-    processor = ScientificQueryProcessor(KNOWLEDGE_BASE)
-
-    query = processor.process(
+    query = ScientificQueryProcessor(
+        KNOWLEDGE_BASE
+    ).process(
         "What is time dilation?"
     )
 
     assert "Time Dilation" in query.concepts
 
     # 2. Wormhole routing
-    wormhole = WormholeRouter().route(query)
+    wormhole = WormholeRouter().route(
+        query
+    )
 
-    assert wormhole["model_route"]["status"] == "resolved"
+    assert (
+        wormhole["input_query"]["original_query"]
+        == query.original_query
+    )
 
-    # 3. Scientific -> Tamil retrieval contract
+    assert wormhole["concept_mapping"]["primary_concepts"]
+
+    assert (
+        "Time Dilation"
+        in wormhole["concept_mapping"]["primary_concepts"]
+    )
+
+    assert wormhole["context_mapping"]["domains"]
+
+    assert (
+        wormhole["model_route"]["status"]
+        == "resolved"
+    )
+
+    # 3. Scientific -> Tamil retrieval bridge
     retrieval_request = ScientificToTamilBridge().build_request(
         query.__dict__,
-        wormhole,
+        wormhole
     )
 
     assert "Time Dilation" in (
         retrieval_request.scientific_concepts
     )
 
-    # 4. Real Tamil RAG
-    rag = TamilRAG(
-        retrieval_top_k=10,
-        final_top_k=5,
-    )
+    # 4. Mock Tamil RAG
+    # Used on the scientific branch only to validate
+    # the retrieval integration contract.
+    rag = MockTamilRetrieval()
 
     tamil_results = rag.retrieve(
         retrieval_request
     )
 
-    assert isinstance(tamil_results, list)
+    assert isinstance(
+        tamil_results,
+        list,
+    )
 
-    # 5. Convert retrieved evidence into the dimensional
-    # analysis context.
+    # 5. Convert retrieved evidence into
+    # the dimensional analysis context.
     tamil_evidence = [
         {
             "source_id": result.source_id,
@@ -87,6 +110,7 @@ def test_full_scientific_pipeline():
         analysis_context
     )
 
+    # 7. Validate dimensional analysis
     assert one_d["dimension"] == "1D"
     assert one_d["analysis_type"] == "TEXT_LITERAL"
 
@@ -99,8 +123,13 @@ def test_full_scientific_pipeline():
     assert four_d["dimension"] == "4D"
     assert four_d["analysis_type"] == "FUTURE_HYPOTHETICAL"
 
-    # 7. 3D does not automatically claim a relationship.
+    # 8. 3D does not automatically claim
+    # a scientific-literary relationship.
     assert three_d["relationship_claim"] is None
 
-    # 8. 4D does not automatically generate a hypothesis.
-    assert four_d["properties"]["hypothesis_generated"] is False
+    # 9. 4D does not automatically generate
+    # a hypothesis.
+    assert (
+        four_d["properties"]["hypothesis_generated"]
+        is False
+    )

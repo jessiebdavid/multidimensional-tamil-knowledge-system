@@ -61,6 +61,10 @@ class RelationshipAnalyzer:
                     "retrieval_score",
                     0.0,
                 ),
+                "metadata": result.get(
+                    "metadata",
+                    {},
+                ),
             }
             for result in retrieved_results
         ]
@@ -69,6 +73,9 @@ class RelationshipAnalyzer:
         self,
         evidence: List[Dict[str, Any]],
     ) -> str:
+
+        if not evidence:
+            return "UNSUPPORTED"
 
         source_types = {
             item.get("source_type")
@@ -79,7 +86,46 @@ class RelationshipAnalyzer:
         # literary relationship.
         if "synthetic_test" in source_types:
             return "INTERPRETATION"
+        # A relationship can only be established when
+        # literary evidence is actually present.
+        if "tamil_rag" not in source_types:
+            return "UNSUPPORTED"
 
+        # Explicit relationship metadata may be supplied
+        # by a validated upstream analysis component.
+        explicit_types = []
+
+        for item in evidence:
+            metadata = item.get("metadata", {})
+
+            if not isinstance(metadata, dict):
+                continue
+
+            relationship_type = metadata.get(
+                "relationship_type"
+            )
+
+            if relationship_type in RELATIONSHIP_TYPES:
+                explicit_types.append(
+                    relationship_type
+                )
+
+        # Only accept explicitly supplied relationship types.
+        if explicit_types:
+            priority = [
+                "FACT",
+                "ANALOGY",
+                "HYPOTHESIS",
+                "INTERPRETATION",
+                "UNSUPPORTED",
+            ]
+
+            for relationship_type in priority:
+                if relationship_type in explicit_types:
+                    return relationship_type
+
+        # Literary evidence exists, but no validated
+        # relationship classification was supplied.
         return "INTERPRETATION"
 
     def _confidence(
