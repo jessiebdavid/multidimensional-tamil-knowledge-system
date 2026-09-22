@@ -70,3 +70,4 @@ desktop.ini
 *.tmp
 *.temp
 *.bak
+*.egg-info/
