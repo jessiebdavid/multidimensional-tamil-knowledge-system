@@ -8,10 +8,15 @@ version = "0.1.0"
 description = "A multidimensional Tamil knowledge system connecting classical Tamil concepts with scientific knowledge."
 requires-python = ">=3.11"
 
+[tool.setuptools]
+package-dir = { "tamil_rag" = "src/tamil_rag" }
+
 [tool.setuptools.packages.find]
+where = ["."]
 include = [
     "scientific*",
     "shared*",
     "processing*",
-    "integration*"
+    "integration*",
+    "tamil_rag*"
 ]
