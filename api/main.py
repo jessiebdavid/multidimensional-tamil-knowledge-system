@@ -3,7 +3,8 @@ from typing import Any, Dict, List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from scientific.query.processor import ScientificQueryProcessor
+
+from scientific.query.llm_processor import LLMScientificQueryProcessor
 from scientific.wormhole.router import WormholeRouter
 from scientific.wormhole.tamil_bridge import ScientificToTamilBridge
 
@@ -13,12 +14,12 @@ from processing.relationship.analyzer import RelationshipAnalyzer
 from integration.analysis_assembler import AnalysisAssembler
 
 
-KNOWLEDGE_BASE = "data/scientific/scientific_knowledge.json"
-
 app = FastAPI(
     title="Multidimensional Tamil Knowledge System",
     version="0.1.0",
 )
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -57,8 +58,8 @@ def health():
 @app.post("/analyze", response_model=AnalyzeResponse)
 def analyze(request: AnalyzeRequest):
 
-    # 1. Scientific query processing
-    processor = ScientificQueryProcessor(KNOWLEDGE_BASE)
+    # 1. Scientific query understanding using Tiny LLM
+    processor = LLMScientificQueryProcessor()
     query = processor.process(request.query)
 
     # 2. Wormhole routing

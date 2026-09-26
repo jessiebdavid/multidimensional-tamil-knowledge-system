@@ -14,6 +14,7 @@ class TinyLLMOutputParser:
         "primary_concept",
         "scientific_intent",
         "relevant_concepts",
+        "scientific_domains",
         "relevant_context",
         "interpretation_notes",
         "uncertainty",
@@ -46,7 +47,9 @@ class TinyLLMOutputParser:
         return match.group(1).strip()
 
     def _parse_list(self, value: str) -> List[str]:
-        """Convert comma-separated model output into a unique list."""
+        """
+        Convert comma-separated model output into a unique list.
+        """
 
         if not value:
             return []
@@ -101,7 +104,9 @@ class TinyLLMOutputParser:
         """
 
         if not response or not response.strip():
-            raise ValueError("Tiny LLM returned an empty response.")
+            raise ValueError(
+                "Tiny LLM returned an empty response."
+            )
 
         primary_concept = self._extract_field(
             response,
@@ -116,6 +121,11 @@ class TinyLLMOutputParser:
         relevant_concepts_raw = self._extract_field(
             response,
             "relevant_concepts",
+        )
+
+        scientific_domains_raw = self._extract_field(
+            response,
+            "scientific_domains",
         )
 
         relevant_context_raw = self._extract_field(
@@ -142,6 +152,9 @@ class TinyLLMOutputParser:
             "scientific_intent": scientific_intent,
             "relevant_concepts": self._parse_list(
                 relevant_concepts_raw
+            ),
+            "scientific_domains": self._parse_list(
+                scientific_domains_raw
             ),
             "relevant_context": self._parse_list(
                 relevant_context_raw
@@ -198,6 +211,14 @@ class TinyLLMOutputParser:
         ):
             raise ValueError(
                 "relevant_concepts must be a list."
+            )
+
+        if not isinstance(
+            result["scientific_domains"],
+            list,
+        ):
+            raise ValueError(
+                "scientific_domains must be a list."
             )
 
         if not isinstance(
