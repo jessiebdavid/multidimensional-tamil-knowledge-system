@@ -13,6 +13,8 @@ from tamil_rag.interface.tamil_rag import TamilRAG
 from processing.relationship.analyzer import RelationshipAnalyzer
 from integration.analysis_assembler import AnalysisAssembler
 
+from online_search.search_engine import OnlineSearchEngine
+
 
 app = FastAPI(
     title="Multidimensional Tamil Knowledge System",
@@ -41,6 +43,7 @@ class AnalyzeResponse(BaseModel):
     scientific_domains: List[str]
     dimensional_analysis: List[Dict[str, Any]]
     tamil_evidence: List[Dict[str, Any]]
+    online_evidence: List[Dict[str, Any]]
     relationship_type: str
     relationship_confidence: float
     reasoning: str
@@ -65,7 +68,7 @@ def analyze(request: AnalyzeRequest):
     # 2. Wormhole routing
     wormhole = WormholeRouter().route(query)
 
-    # 3. Scientific → Tamil retrieval request
+    # 3. Scientific -> Tamil retrieval request
     bridge = ScientificToTamilBridge()
 
     retrieval_request = bridge.build_request(
@@ -86,13 +89,32 @@ def analyze(request: AnalyzeRequest):
         for result in tamil_results
     ]
 
-    # 5. Relationship analysis
+    # 5. Online scientific evidence using Tavily
+    search_query = " ".join(
+        [
+            request.query,
+            *retrieval_request.scientific_concepts,
+            *retrieval_request.scientific_domains,
+        ]
+    ).strip()
+
+    online_results = OnlineSearchEngine().search(
+        search_query,
+        max_results=5,
+    )
+
+    online_dicts = [
+        result.__dict__
+        for result in online_results
+    ]
+
+    # 6. Relationship analysis
     relationship = RelationshipAnalyzer().analyze(
         scientific_concepts=retrieval_request.scientific_concepts,
         retrieved_results=tamil_dicts,
     )
 
-    # 6. Final structured analysis
+    # 7. Final structured analysis
     result = AnalysisAssembler().assemble(
         scientific_query=query.__dict__,
         wormhole_result=wormhole,
@@ -100,6 +122,10 @@ def analyze(request: AnalyzeRequest):
         relationship_result=relationship,
     )
 
+    # 8. Add online evidence to final response
+    result_dict = result.__dict__
+    result_dict["online_evidence"] = online_dicts
+
     return AnalyzeResponse(
-        **result.__dict__
+        **result_dict
     )
