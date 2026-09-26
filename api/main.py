@@ -116,12 +116,12 @@ def analyze(request: AnalyzeRequest):
 
     # 7. Final structured analysis
     result = AnalysisAssembler().assemble(
-        scientific_query=query.__dict__,
-        wormhole_result=wormhole,
-        tamil_results=tamil_dicts,
-        relationship_result=relationship,
-    )
-
+    scientific_query=query.__dict__,
+    wormhole_result=wormhole,
+    tamil_results=tamil_dicts,
+    relationship_result=relationship,
+    online_results=online_dicts,
+)
     # 8. Add online evidence to final response
     result_dict = result.__dict__
     result_dict["online_evidence"] = online_dicts

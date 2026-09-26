@@ -11,15 +11,23 @@ class AnalysisResult:
     This schema is an integration contract.
     """
 
-    scientific_concepts: List[str] = field(default_factory=list)
+    scientific_concepts: List[str] = field(
+        default_factory=list
+    )
 
-    scientific_domains: List[str] = field(default_factory=list)
+    scientific_domains: List[str] = field(
+        default_factory=list
+    )
 
     dimensional_analysis: List[Dict[str, Any]] = field(
         default_factory=list
     )
 
     tamil_evidence: List[Dict[str, Any]] = field(
+        default_factory=list
+    )
+
+    online_evidence: List[Dict[str, Any]] = field(
         default_factory=list
     )
 
